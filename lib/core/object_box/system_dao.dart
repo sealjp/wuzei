@@ -10,7 +10,7 @@ class SystemDao {
   /// save to object box
   static void _update() => objectbox.systemBox.put(_box);
 
-  static void saveTheme(bool isDark) {
+  static void saveTheme(bool? isDark) {
     /// in order to only save one record
     _read();
     _box.isDarkTheme = isDark;
@@ -35,10 +35,8 @@ class SystemDao {
         return const Locale('ja', 'JP');
       case 'zh':
         return const Locale('zh', 'Hans');
-      case 'en':
-        return const Locale('en', 'US');
       default:
-        return null;
+        return const Locale('en', 'US');
     }
   }
 

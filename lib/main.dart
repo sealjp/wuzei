@@ -15,9 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'WeStar',
-      theme: themeData,
+      theme:  ThemeHandler.read() ?  darkTheme :  lightTheme,
        locale: SystemDao.getLocale(),
-      fallbackLocale: const Locale('en', 'US'),
       translations: AppTranslations(),
       home: const ApplicationView(),
     );

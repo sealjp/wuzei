@@ -19,12 +19,15 @@ const Map<String, String> zh_Hans = {
   'contacts_edit': '编辑联系人',
   'contacts_deleteRemind': '确定删除？',
   'contacts_remove': '删除该联系人',
+  'dark': '深色模式',
+  'light': '浅色模式',
   'me_profile': '个人信息',
   'me_sendMyPublicKey': '发送我的公钥',
   'me_setName': '设置名字',
   'me_shareContent': '这是我的公钥，请保存。\n名字: @name, \n公钥: @publicKey',
   'me_shareDescript':
       '把自己的RSA公钥发送给对方，对方用本APP将原文加密后发送给自己，自己在进行解密。发送公钥的渠道绝对不要使用平时的通信渠道。例如平时用W消息软件传递信息，则应采用邮件或者短信发送。',
+  'sytem': '跟随系统',
   'me_update': '更新',
   'me_updateKeyPair': '更新密钥对',
   'me_updateKeyPairDescript':
