@@ -1,4 +1,4 @@
-package com.example.westar
+package org.opensource.westar
 
 import io.flutter.embedding.android.FlutterActivity
 
