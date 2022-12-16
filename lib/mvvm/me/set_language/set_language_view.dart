@@ -5,7 +5,7 @@ class SetLanguageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     Get.put(SetLanguageViewModel());
+    Get.put(SetLanguageViewModel());
     return Scaffold(
         appBar: AppBar(title: Text('common_language'.tr)),
         body: SafeArea(
@@ -15,7 +15,9 @@ class SetLanguageView extends StatelessWidget {
                   children: const [
                     LanguageListTile(
                         title: 'English', locale: Locale('en', 'US')),
+                    Divider(),
                     LanguageListTile(title: '中文', locale: Locale('zh', 'Hans')),
+                    Divider(),
                     LanguageListTile(title: '日本語', locale: Locale('ja', 'JP'))
                   ],
                 ))));

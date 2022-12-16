@@ -1,56 +1,21 @@
 import '../../../lib.dart';
 
 class SetDisplayModeViewModel extends GetxController {
-  Rx<ThemeMode> boxMode = ThemeMode.system.obs;
-  Rx<ThemeMode> runningMode = ThemeMode.system.obs;
+  Rx<ThemeMode> mode = ThemeMode.system.obs;
+  RxBool get isFollowSystem =>
+      mode.value == ThemeMode.system ? true.obs : false.obs;
+  ThemeMode get systemMode =>
+      Get.isPlatformDarkMode ? ThemeMode.dark : ThemeMode.light;
+  Rx<ThemeMode> get runningMode =>
+      mode.value == ThemeMode.system ? systemMode.obs : mode;
 
   @override
   void onInit() {
     super.onInit();
-    _getModes();
+    _loadTheme();
   }
 
-  ThemeMode _bool2Mode(bool? v) {
-    switch (v) {
-      case null:
-        return ThemeMode.system;
-
-      case true:
-        return ThemeMode.dark;
-
-      case false:
-        return ThemeMode.light;
-      default:
-        return ThemeMode.system;
-    }
-  }
-
-  bool? _mode2bool(ThemeMode v) {
-    switch (v) {
-      case ThemeMode.dark:
-        return true;
-
-      case ThemeMode.light:
-        return false;
-      case ThemeMode.system:
-        return null;
-    }
-  }
-
-  void _getBoxMode() {
-    final bool? boxValue = SystemDao.getIsDarkTheme();
-    boxMode.value = _bool2Mode(boxValue);
-  }
-
-  void _getRunningMode() {
-    final bool runningValue = ThemeHandler.read();
-    runningMode.value = _bool2Mode(runningValue);
-  }
-
-  void _getModes() {
-    _getBoxMode();
-    _getRunningMode();
-  }
+  void _loadTheme() => mode.value = SystemDao.getTheme();
 
   void switchSystemMode(bool isSystem) {
     final ThemeMode v = isSystem ? ThemeMode.system : runningMode.value;
@@ -59,11 +24,10 @@ class SetDisplayModeViewModel extends GetxController {
 
   void _handleNotRefresh() => Get.updateLocale(Get.locale!);
 
-  void setDisplayMode(ThemeMode mode) {
-    Get.changeThemeMode(mode);
+  void setDisplayMode(ThemeMode v) {
+    Get.changeThemeMode(v);
     _handleNotRefresh();
-    final bool? v = _mode2bool(mode);
-    SystemDao.saveTheme(v);
-    _getModes();
+    SystemDao.saveTheme(v.index);
+    _loadTheme();
   }
 }

@@ -27,7 +27,7 @@ const Map<String, String> ja_JP = {
   'me_shareContent': 'これは私の公開鍵です。保存してください。 \n名前:@name, \n公開鍵:@publicKey',
   'me_shareDescript':
       '自分のRSA公開鍵を相手に送信し、相手は本アプリで原文を暗号化して自分に送信し、自分は復号しています。公開鍵を送信するチャネルは、通常の通信チャネルを使用しないでください。例えば,普段はWメッセージソフトウェアで情報を転送する場合は、メールやSMSで送信する必要があります。',
-  'sytem':'システム',
+  'me_sytemMode':'システム',
   'me_update': '更新する',
   'me_updateKeyPair': '鍵ペアの更新する',
   'me_updateKeyPairDescript':

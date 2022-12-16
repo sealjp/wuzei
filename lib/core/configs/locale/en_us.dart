@@ -28,7 +28,7 @@ const Map<String, String> en_US = {
       'This is my public key, please save it. \n Name: @name, \n Public key: @publicKey',
   'me_shareDescript':
       'Send your RSA public key to the other party, and the other party encrypts the original text with this software and sends it to you, who is decrypting it. The channel to send the public key should never use the usual communication channel. For example, if W messaging software is usually used to convert information, it should be sent by email or SMS.',
-  'sytem': 'System Mode',
+  'me_sytemMode': 'System Mode',
   'me_update': 'Update',
   'me_udateKeyPair': 'Update key pair',
   'me_updateKeyPairDescript':

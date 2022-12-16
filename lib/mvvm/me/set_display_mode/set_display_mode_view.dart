@@ -16,10 +16,12 @@ class SetDisplayModeView extends StatelessWidget {
                     ListTile(
                       leading: Text('me_sytemMode'.tr),
                       trailing: Obx(() => Switch(
-                          value: m.boxMode.value == ThemeMode.system,
+                          value: m.isFollowSystem.value,
                           onChanged: m.switchSystemMode)),
                     ),
-                   const DisplayModeListTile( ThemeMode.dark),
+                    const _Divider(),
+                    const DisplayModeListTile(ThemeMode.dark),
+                    const _Divider(),
                     const DisplayModeListTile(ThemeMode.light),
                   ],
                 ))));
@@ -44,10 +46,21 @@ class DisplayModeListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final SetDisplayModeViewModel m = Get.put(SetDisplayModeViewModel());
     return Obx(() => Visibility(
-        visible: m.boxMode.value != ThemeMode.system,
+        visible: !m.isFollowSystem.value,
         child: ListTile(
             onTap: () => m.setDisplayMode(mode),
             title: Text(mode.name.tr),
             trailing: DisplayModeCheckMark(mode))));
+  }
+}
+
+class _Divider extends StatelessWidget {
+  const _Divider({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final SetDisplayModeViewModel m = Get.put(SetDisplayModeViewModel());
+    return Obx(() =>
+        Visibility(visible: !m.isFollowSystem.value, child: const Divider()));
   }
 }
