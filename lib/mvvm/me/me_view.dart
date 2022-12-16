@@ -30,6 +30,11 @@ class MeView extends StatelessWidget {
                         icon: Icons.language,
                         title: 'common_language'.tr,
                         nextPage: const SetLanguageView()),
+                         const Divider(),
+                    CommonListTile(
+                        icon: CupertinoIcons.moon,
+                        title: 'common_display'.tr,
+                        nextPage: const SetDisplayModeView()),
                   ],
                 ))));
   }

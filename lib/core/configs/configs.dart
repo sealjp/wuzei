@@ -1,2 +1,2 @@
-export 'theme.dart';
+export 'themes.dart';
 export 'locale/locale.dart';

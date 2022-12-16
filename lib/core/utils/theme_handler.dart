@@ -1,6 +1,12 @@
 import '../../lib.dart';
 
 class ThemeHandler {
-  /// return value isDark
-  static bool read() => SystemDao.getIsDarkTheme() ?? Get.isPlatformDarkMode;
+ static ThemeData show() {
+    ThemeMode mode = SystemDao.getTheme();
+    if (mode == ThemeMode.system) {
+      final bool isDark = Get.isPlatformDarkMode;
+      mode = isDark ? ThemeMode.dark : ThemeMode.light;
+    }
+    return mode == ThemeMode.dark ? darkTheme : lightTheme;
+  }
 }

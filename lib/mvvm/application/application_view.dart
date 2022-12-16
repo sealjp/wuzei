@@ -50,13 +50,13 @@ class BottomItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ApplicationViewModel m = Get.find();
-    final colorSelected = Theme.of(context).colorScheme.secondary;
-    final colorUnselected = Theme.of(context).colorScheme.tertiary;
-    final TextStyle styleUnselected = Theme.of(context).textTheme.titleSmall!;
-    final TextStyle styleSelected = Theme.of(context)
-        .textTheme
-        .titleSmall!
-        .copyWith(color: const Color(0xde1A1C1E), fontWeight: FontWeight.w600);
+    final selectedColor = Theme.of(context).selectedRowColor;
+    final unselectedColor = Theme.of(context).unselectedWidgetColor /** */;
+    // final TextStyle styleUnselected = Theme.of(context).textTheme.titleSmall!;
+    // final TextStyle styleSelected = Theme.of(context)
+    // .textTheme
+    // .titleSmall!
+    // .copyWith(color: const Color(0xde1A1C1E), fontWeight: FontWeight.w600);
     // final Color color = Colors.grey.shade400;
     // const Color colorSelected = Colors.white;
 
@@ -76,13 +76,16 @@ class BottomItem extends StatelessWidget {
                   return Column(
                     children: <Widget>[
                       if (index == m.tabIndex.value)
-                        Icon(selectedIconData, color: colorSelected)
+                        Icon(selectedIconData, color: selectedColor)
                       else
-                        Icon(iconData, color: colorUnselected),
-                      Text(title,
-                          style: index == m.tabIndex.value
-                              ? styleSelected
-                              : styleUnselected),
+                        Icon(iconData, color: unselectedColor),
+                      Text(
+                        title,
+                        style: TextStyle(
+                            color: index == m.tabIndex.value
+                                ? selectedColor
+                                : unselectedColor),
+                      ),
                     ],
                   );
                 },

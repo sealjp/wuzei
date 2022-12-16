@@ -4,7 +4,7 @@
 // With a Dart package, run `dart run build_runner build`.
 // See also https://docs.objectbox.io/getting-started#generate-objectbox-code
 
-// ignore_for_file: camel_case_types, avoid_types_on_closure_parameters
+// ignore_for_file: camel_case_types
 // coverage:ignore-file
 
 import 'dart:typed_data';
@@ -23,7 +23,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(1, 1832607669726758391),
       name: 'SystemBox',
-      lastPropertyId: const IdUid(9, 7378724197994116009),
+      lastPropertyId: const IdUid(10, 8648690876011395809),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -37,14 +37,14 @@ final _entities = <ModelEntity>[
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 2260590782754986478),
-            name: 'isDarkTheme',
-            type: 1,
-            flags: 0),
-        ModelProperty(
             id: const IdUid(9, 7378724197994116009),
             name: 'date',
             type: 10,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(10, 8648690876011395809),
+            name: 'themeModeIndex',
+            type: 6,
             flags: 0)
       ],
       relations: <ModelRelation>[],
@@ -132,7 +132,8 @@ ModelDefinition getObjectBoxModel() {
         7153832153020998477,
         9083648820170046366,
         8291497389063408322,
-        4677623587850214075
+        4677623587850214075,
+        2260590782754986478
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -152,11 +153,11 @@ ModelDefinition getObjectBoxModel() {
           final languageCodeOffset = object.languageCode == null
               ? null
               : fbb.writeString(object.languageCode!);
-          fbb.startTable(10);
+          fbb.startTable(11);
           fbb.addInt64(0, object.id ?? 0);
           fbb.addOffset(1, languageCodeOffset);
-          fbb.addBool(2, object.isDarkTheme);
           fbb.addInt64(8, object.date.millisecondsSinceEpoch);
+          fbb.addInt64(9, object.themeModeIndex);
           fbb.finish(fbb.endTable());
           return object.id ?? 0;
         },
@@ -169,8 +170,8 @@ ModelDefinition getObjectBoxModel() {
                   .vTableGetNullable(buffer, rootOffset, 4),
               languageCode: const fb.StringReader(asciiOptimization: true)
                   .vTableGetNullable(buffer, rootOffset, 6),
-              isDarkTheme: const fb.BoolReader()
-                  .vTableGetNullable(buffer, rootOffset, 8),
+              themeModeIndex: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 22),
               date: DateTime.fromMillisecondsSinceEpoch(
                   const fb.Int64Reader().vTableGet(buffer, rootOffset, 20, 0)));
 
@@ -241,12 +242,12 @@ class SystemBox_ {
   static final languageCode =
       QueryStringProperty<SystemBox>(_entities[0].properties[1]);
 
-  /// see [SystemBox.isDarkTheme]
-  static final isDarkTheme =
-      QueryBooleanProperty<SystemBox>(_entities[0].properties[2]);
-
   /// see [SystemBox.date]
   static final date =
+      QueryIntegerProperty<SystemBox>(_entities[0].properties[2]);
+
+  /// see [SystemBox.themeModeIndex]
+  static final themeModeIndex =
       QueryIntegerProperty<SystemBox>(_entities[0].properties[3]);
 }
 

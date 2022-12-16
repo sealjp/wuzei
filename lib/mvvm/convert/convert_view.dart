@@ -118,16 +118,16 @@ class InputField extends StatelessWidget {
         Row(
           children: [
             const InputTitle(),
+            const SizedBox(width: 5,),
             Obx(() => Text(
                   '${m.inputBytes.value}/245 B',
                   style: TextStyle(
                       color: m.inputBytes.value >= 245
                           ? Theme.of(context).colorScheme.error
                           : Theme.of(context).colorScheme.onBackground),
-                )),
-            IconButton(onPressed: m.copyInput, icon: const Icon(Icons.copy)),
+                )), 
             IconButton(
-                onPressed: m.pasteToInput, icon: const Icon(Icons.paste)),
+                onPressed: m.paste, icon: const Icon(Icons.paste)),
             IconButton(
                 onPressed: m.clearInput,
                 icon: const Icon(CupertinoIcons.trash)),
@@ -154,8 +154,7 @@ class OutputContent extends StatelessWidget {
       children: [
         Row(children: [
           const OutputTitle(),
-          IconButton(onPressed: m.copyOutput, icon: const Icon(Icons.copy)),
-          IconButton(onPressed: m.pasteToInput, icon: const Icon(Icons.paste))
+          IconButton(onPressed: m.copy, icon: const Icon(Icons.copy)),
         ]),
         Container(
             decoration: BoxDecoration(

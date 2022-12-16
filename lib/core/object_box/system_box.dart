@@ -9,7 +9,7 @@ import 'objectbox.g.dart';
 class SystemBox {
   int? id;
   String? languageCode;
-  bool? isDarkTheme;
+  int? themeModeIndex;
 
 
 
@@ -18,7 +18,7 @@ class SystemBox {
   SystemBox(
       {this.id = 0,
       this.languageCode,
-      this.isDarkTheme,
+      this.themeModeIndex,
       DateTime? date})
       : date = date ?? DateTime.now();
 

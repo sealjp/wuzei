@@ -60,24 +60,16 @@ class TransferViewModel extends GetxController {
     calInputBytes();
   }
 
-  Future<void> _copy(String text) async {
-    await Clipboard.setData(ClipboardData(text: text));
+  Future<void> copy() async {
+    await Clipboard.setData(ClipboardData(text: output.value));
   }
 
-  Future<void> copyInput() => _copy(inputCtrl.text);
-
-  Future<void> copyOutput() => _copy(output.value);
-
-  Future<String> _getClipboardText() async {
+  Future<void> paste() async {
     final ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);
-    return data?.text ?? '';
+    inputCtrl.text =  data?.text ?? '';
   }
 
-  pasteToInput() async {
-    inputCtrl.text = await _getClipboardText();
-  }
+ 
 
-  pasteToOutput() async {
-    output.value = await _getClipboardText();
-  }
+
 }
