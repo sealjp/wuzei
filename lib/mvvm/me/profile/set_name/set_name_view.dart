@@ -8,10 +8,10 @@ class SetNameView extends StatelessWidget {
     final MeController m = Get.find();
     return Scaffold(
         appBar: AppBar(
-            leading: TextButton(
-              child: Text('common_cancel'.tr),
-              onPressed: m.back,
-            ),
+            // leading: TextButton(
+            //   child: Text('common_cancel'.tr),
+            //   onPressed: m.back,
+            // ),
             actions: [
               TextButton(
                 child: Text('common_complete'.tr),
