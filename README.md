@@ -1,10 +1,10 @@
-# WeStar
+# WeZone
 
-WeStar is a mobile application using RSA to encrypt information. 
+WeZone is a mobile application using RSA to encrypt information. 
 
-WeStar是一个用RSA加密信息的手机软件。 
+WeZone是一个用RSA加密信息的手机软件。 
 
-WeStarはRSAで情報を暗号化するアプリである。  
+WeZoneはRSAで情報を暗号化するアプリである。  
 
 
 

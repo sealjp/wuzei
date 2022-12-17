@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'WeStar',
+      title: 'WeZone',
       theme:  ThemeHandler.show(),
        locale: SystemDao.getLocale(),
       translations: AppTranslations(),
