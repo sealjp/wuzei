@@ -1,10 +1,10 @@
-# WeZone
+# Wuzei
 
-WeZone is a mobile application using RSA to encrypt information. 
+Wuzei is a mobile application using RSA to encrypt information. 
 
-WeZone是一个用RSA加密信息的手机软件。 
+Wuzei是一个用RSA加密信息的手机软件。 
 
-WeZoneはRSAで情報を暗号化するアプリである。  
+WuzeiはRSAで情報を暗号化するアプリである。  
 
 
 

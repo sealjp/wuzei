@@ -1,4 +1,4 @@
-package org.opens.wezone
+package org.open.wuzei
 
 import io.flutter.embedding.android.FlutterActivity
 
