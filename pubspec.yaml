@@ -1,5 +1,5 @@
-name: westar
-description: RSA security assistance.
+name: Wuzei
+description: RSA security.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -52,7 +52,7 @@ dev_dependencies:
 flutter_icons: #flutter pub run flutter_launcher_icons
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon.png"
+  image_path: "assets/black.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   # web:
   #   generate: true

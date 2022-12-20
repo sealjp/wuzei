@@ -1,11 +1,22 @@
-# WeStar
+# Wuzei
 
-WeStar is a mobile application using RSA to encrypt information. 
+Wuzei is a mobile application using RSA to encrypt information. 
 
-WeStar是一个用RSA加密信息的手机软件。 
+Wuzei是一个用RSA加密信息的手机软件。 
 
-WeStarはRSAで情報を暗号化するアプリである。  
+WuzeiはRSAで情報を暗号化するアプリである。  
 
+
+## How to build
+
+1. bundle  
+''' 
+flutter build appbundle 
+'''
+2. apk 
+'''
+flutter build apk --split-per-abi
+''' 
 
 
 ## License

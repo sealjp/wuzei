@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.opensource.westar">
+    package="org.open.wuzei">
    <application
-        android:label="westar"
+        android:label="Wuzei"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
