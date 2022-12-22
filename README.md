@@ -10,19 +10,15 @@ WuzeiはRSAで情報を暗号化するアプリである。
 ## How to build
 
 1. bundle  
-''' 
+'''    
 flutter build appbundle 
 '''
 2. apk 
-'''
+'''    
 flutter build apk --split-per-abi
 ''' 
 
 
 ## License
 
-All the right reserved for the original authors sealjp(Sho Ji).  
-
-版权归原作者sealjp（Sho Ji）所有。  
-
-著作権は原作者のsealjp（ショウ　ジ）が所有している。  
+GPL v3
