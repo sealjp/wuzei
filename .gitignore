@@ -48,5 +48,6 @@ app.*.map.json
 /android/app/release
 
 keystore.properties
+key.properties
 key.jks
 note

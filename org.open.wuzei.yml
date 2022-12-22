@@ -1,0 +1,37 @@
+Categories:
+  - Securit
+License: GPL-3.0-only
+SourceCode: https://github.com/sealjp/wuzei
+AuthorName: Zhang Xi
+AuthorEmail: sealnippon@gmail.com
+
+
+RepoType: git
+Repo: https://github.com/sealjp/wuzei
+
+Builds:
+  - versionName: '0.0.1'
+    versionCode: 1
+    commit: v0.0.1
+    commit:   01cf1ed73ed227d3b8ed9c930d7f536ac0fbc531
+    output: build/app/outputs/flutter-apk/app-fdroid-release.apk //
+    srclibs:
+      - flutter@3.0.5
+    rm:
+      - ios
+      - linux
+      - macos
+      - test
+      - web
+      - windows
+    build:
+      - $$flutter$$/bin/flutter config --no-analytics
+      - $$flutter$$/bin/flutter packages pub get
+      - $$flutter$$/bin/flutter build apk
+
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+UpdateCheckData: pubspec.yaml|version:\s.+\+(\d+)|.|version:\s(.+)\+
+CurrentVersion: 0.0.1
+CurrentVersionCode: 1
