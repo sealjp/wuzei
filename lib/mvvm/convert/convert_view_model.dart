@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import 'package:flutter/services.dart';
 
 import '../../lib.dart';
@@ -30,17 +29,22 @@ class TransferViewModel extends GetxController {
   TextEditingController inputCtrl = TextEditingController(text: '');
   RxInt inputBytes = 0.obs;
   RxString output = ''.obs;
+  RxBool showCopyFinished = false.obs;
 
   @override
   void onInit() async {
     super.onInit();
-   await loadUsers();
-    user..value = users.first..refresh();
+    await loadUsers();
+    user
+      ..value = users.first
+      ..refresh();
     _loadPrivateKey();
     _listenInputCtrl();
   }
 
- Future< void> loadUsers() async{users.value = await UserDao.queryAll();}
+  Future<void> loadUsers() async {
+    users.value = await UserDao.queryAll();
+  }
 
   void _loadPrivateKey() async {
     final String? key = await SafeBox.readPrivateKey();
@@ -80,16 +84,20 @@ class TransferViewModel extends GetxController {
     calInputBytes();
   }
 
+  void _setCopyFinished() {
+    showCopyFinished.value = true;
+    Future.delayed(const Duration(seconds: 1), () {
+      showCopyFinished.value = false;
+    });
+  }
+
   Future<void> copy() async {
     await Clipboard.setData(ClipboardData(text: output.value));
+    _setCopyFinished();
   }
 
   Future<void> paste() async {
     final ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);
-    inputCtrl.text =  data?.text ?? '';
+    inputCtrl.text = data?.text ?? '';
   }
-
- 
-
-
 }

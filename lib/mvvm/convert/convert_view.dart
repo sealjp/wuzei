@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import 'package:flutter/cupertino.dart';
 
 import '../../lib.dart';
@@ -138,16 +137,17 @@ class InputField extends StatelessWidget {
         Row(
           children: [
             const InputTitle(),
-            const SizedBox(width: 5,),
+            const SizedBox(
+              width: 5,
+            ),
             Obx(() => Text(
                   '${m.inputBytes.value}/245 B',
                   style: TextStyle(
                       color: m.inputBytes.value >= 245
                           ? Theme.of(context).colorScheme.error
                           : Theme.of(context).colorScheme.onBackground),
-                )), 
-            IconButton(
-                onPressed: m.paste, icon: const Icon(Icons.paste)),
+                )),
+            IconButton(onPressed: m.paste, icon: const Icon(Icons.paste)),
             IconButton(
                 onPressed: m.clearInput,
                 icon: const Icon(CupertinoIcons.trash)),
@@ -174,7 +174,14 @@ class OutputContent extends StatelessWidget {
       children: [
         Row(children: [
           const OutputTitle(),
-          IconButton(onPressed: m.copy, icon: const Icon(Icons.copy)),
+        Obx(()=> Visibility(
+          visible: m.output.value.isNotEmpty,
+          child: IconButton(
+              onPressed: m.copy,
+              icon: m.showCopyFinished.value
+                  ? Icon(Icons.check,
+                      color: Theme.of(context).colorScheme.primary)
+                  : const Icon(Icons.copy)))),
         ]),
         Container(
             decoration: BoxDecoration(

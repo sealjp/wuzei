@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import '../../../lib.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -26,6 +25,10 @@ extension ShareAction on MeController {
     final String message = 'me_shareContent'
         .trParams({'name': me.value.nameStr, 'publicKey': me.value.publicKey!});
     debugPrint(message);
-    Share.share(message);
+    Share.share(
+      message,
+      sharePositionOrigin: Rect.fromCenter(
+          center: const Offset(100, 100), width: 100, height: 100),
+    );
   }
 }
