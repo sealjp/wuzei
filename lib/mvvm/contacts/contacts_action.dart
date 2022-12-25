@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -17,18 +17,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import '../../../lib.dart';
-import 'package:share_plus/share_plus.dart';
+import '../../lib.dart';
 
-extension ShareAction on MeController {
-  void share() {
-    final String message = 'me_shareContent'
-        .trParams({'name': me.value.nameStr, 'publicKey': me.value.publicKey!});
-    debugPrint(message);
-    Share.share(
-      message,
-      sharePositionOrigin: Rect.fromCenter(
-          center: const Offset(100, 100), width: 100, height: 100),
-    );
+extension ContactsAction on ApplicationViewModel {
+  void newUser() => user.value = UserBox();
+
+  void toAddView() {
+    newUser();
+    Get.to(const AddUserView());
+  }
+
+  void toEditView(int i) {
+    userIndex = i;
+    Get.to(const EditUserView());
   }
 }

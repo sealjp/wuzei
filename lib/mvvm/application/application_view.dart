@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 
 import 'package:flutter/cupertino.dart';
 
@@ -35,7 +34,7 @@ class ApplicationView extends StatelessWidget {
         child: Scaffold(
           body: const TabBarView(
             physics: NeverScrollableScrollPhysics(),
-            children: [TransferView(), ContactsView(), MeView()],
+            children: [ConvertView(), ContactsView(), MeView()],
           ),
           bottomNavigationBar: BottomAppBar(
             notchMargin: 6,
@@ -70,19 +69,12 @@ class BottomItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final ApplicationViewModel m = Get.find();
     final selectedColor = Theme.of(context).selectedRowColor;
-    final unselectedColor = Theme.of(context).unselectedWidgetColor /** */;
-    // final TextStyle styleUnselected = Theme.of(context).textTheme.titleSmall!;
-    // final TextStyle styleSelected = Theme.of(context)
-    // .textTheme
-    // .titleSmall!
-    // .copyWith(color: const Color(0xde1A1C1E), fontWeight: FontWeight.w600);
-    // final Color color = Colors.grey.shade400;
-    // const Color colorSelected = Colors.white;
+    final unselectedColor = Theme.of(context).unselectedWidgetColor;
 
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          m.onTap(index);
+          m.switchTab(index);
           DefaultTabController.of(context)!.animateTo(index);
         },
         child: SizedBox(

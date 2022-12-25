@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -21,12 +21,12 @@ import 'package:flutter/cupertino.dart';
 
 import '../../lib.dart';
 
-class TransferView extends StatelessWidget {
-  const TransferView({Key? key}) : super(key: key);
+class ConvertView extends StatelessWidget {
+  const ConvertView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final TransferViewModel m = Get.put(TransferViewModel());
+    final ApplicationViewModel m = Get.find();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -58,7 +58,7 @@ class ContactsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TransferViewModel m = Get.find();
+    final ApplicationViewModel m = Get.find();
     return Column(
       children: [
         Container(
@@ -75,8 +75,7 @@ class ContactsListView extends StatelessWidget {
             child: ListView.separated(
                 separatorBuilder: (_, __) => const Divider(),
                 itemCount: m.users.length,
-                itemBuilder: (_, index) =>
-                    UserListTile(m.users[index], m.selectUser))),
+                itemBuilder: (_, index) => UserListTile(index, m.selectUser))),
       ],
     );
   }
@@ -87,7 +86,7 @@ class InputTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TransferViewModel m = Get.find();
+    final ApplicationViewModel m = Get.find();
     return Obx(() => Text(m.encodeMode.value
         ? 'convert_decodedText'.tr
         : 'convert_encodedText'.tr));
@@ -99,7 +98,7 @@ class OutputTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TransferViewModel m = Get.find();
+    final ApplicationViewModel m = Get.find();
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -130,7 +129,7 @@ class InputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TransferViewModel m = Get.find();
+    final ApplicationViewModel m = Get.find();
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -144,20 +143,23 @@ class InputField extends StatelessWidget {
                   '${m.inputBytes.value}/245 B',
                   style: TextStyle(
                       color: m.inputBytes.value >= 245
-                          ? Theme.of(context).colorScheme.error
-                          : Theme.of(context).colorScheme.onBackground),
+                          ? Theme.of(context).errorColor
+                          : Theme.of(context).disabledColor), 
                 )),
-            IconButton(onPressed: m.paste, icon: const Icon(Icons.paste)),
+            IconButton(
+                onPressed: m.pasteConvert, icon: const Icon(Icons.paste)),
             IconButton(
                 onPressed: m.clearInput,
                 icon: const Icon(CupertinoIcons.trash)),
           ],
         ),
         TextFormField(
+            onChanged: m.inputChanged,
             keyboardType: TextInputType.text,
             controller: m.inputCtrl,
-            maxLines: 10,
-            minLines: 10),
+            maxLines: 5,
+            minLines: 5,
+            decoration: const InputDecoration(border: InputBorder.none),),
       ],
     );
   }
@@ -168,20 +170,20 @@ class OutputContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TransferViewModel m = Get.find();
+    final ApplicationViewModel m = Get.find();
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(children: [
           const OutputTitle(),
-        Obx(()=> Visibility(
-          visible: m.output.value.isNotEmpty,
-          child: IconButton(
-              onPressed: m.copy,
-              icon: m.showCopyFinished.value
-                  ? Icon(Icons.check,
-                      color: Theme.of(context).colorScheme.primary)
-                  : const Icon(Icons.copy)))),
+          Obx(() => Visibility(
+              visible: m.output.value.isNotEmpty,
+              child: IconButton(
+                  onPressed: m.copyOutput,
+                  icon: m.showCopyFinished.value
+                      ? Icon(Icons.check,
+                          color: Theme.of(context).colorScheme.primary)
+                      : const Icon(Icons.copy)))),
         ]),
         Container(
             decoration: BoxDecoration(

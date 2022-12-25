@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -17,29 +17,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import 'package:flutter/services.dart';
 
 import '../../../lib.dart';
 
-extension ManageUserExtension on UsersController {
+extension ManageUserAction on ApplicationViewModel {
   RxBool get isFilled => (nameErrorText.value.isEmpty &&
           keyErrorText.value.isEmpty &&
           nameCtrl.text.isNotEmpty &&
           publicKeyCtrl.text.isNotEmpty)
       .obs;
 
-  void deleteName() => nameCtrl.text = '';
+  void clearKey() => publicKeyCtrl.clear();
 
-  void deleteKey() => publicKeyCtrl.text = '';
-
-  Future<void> paste() async {
+  Future<void> pasteUser() async {
     final ClipboardData? cdata = await Clipboard.getData(Clipboard.kTextPlain);
     if (cdata == null) return;
     user
       ..value = UserBox.fromString(cdata.text ?? '')
       ..refresh();
-    loadTextCtrls(user.value);
   }
 
   void deleteUser() =>

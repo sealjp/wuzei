@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import 'package:flutter/cupertino.dart';
 
 import '../../lib.dart';
@@ -27,7 +26,8 @@ class MeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MeController(), permanent: true);
+    final ApplicationViewModel m = Get.find();
+    // Get.put(MeController(), permanent: true);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -42,15 +42,17 @@ class MeView extends StatelessWidget {
                     const ProfileListTile(),
                     const Divider(),
                     CommonListTile(
-                        icon: Icons.share,
-                        title: 'me_sendMyPublicKey'.tr,
-                        nextPage: const ShareView()),
+                      icon: Icons.share,
+                      title: 'me_sendMyPublicKey'.tr,
+                      nextPage: const ShareView(),
+                      nextPageArgu: [m.user.value],
+                    ),
                     const Divider(),
                     CommonListTile(
                         icon: Icons.language,
                         title: 'common_language'.tr,
                         nextPage: const SetLanguageView()),
-                         const Divider(),
+                    const Divider(),
                     CommonListTile(
                         icon: CupertinoIcons.moon,
                         title: 'common_display'.tr,
@@ -64,17 +66,16 @@ class ProfileListTile extends StatelessWidget {
   const ProfileListTile({super.key});
   @override
   Widget build(BuildContext context) {
-    final MeController m = Get.find();
+    final ApplicationViewModel m = Get.find();
     return ListTile(
-      onTap: () =>Get.to(const ProfileView()),
-      leading: SizedBox(
-          child: CircleAvatar(child: Obx(() => Text(m.me.value.initial)))),
-      title: Row(
-        children: [Obx(() => Text(m.me.value.nameStr))],
-      ),
-      subtitle: Obx(() =>
-          Text("${'common_rsaPublicKey'.tr}: ${m.me.value.publicKeyPartStr}")),
-      trailing: const Icon(CupertinoIcons.chevron_right, size: 16)
-    );
+        onTap: () => Get.to(const ProfileView()),
+        leading: SizedBox(
+            child: CircleAvatar(child: Obx(() => Text(m.user.value.initial)))),
+        title: Row(
+          children: [Obx(() => Text(m.user.value.nameStr))],
+        ),
+        subtitle: Obx(() => Text(
+            "${'common_rsaPublicKey'.tr}: ${m.user.value.publicKeyPartStr}")),
+        trailing: const Icon(CupertinoIcons.chevron_right, size: 16));
   }
 }

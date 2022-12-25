@@ -17,5 +17,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-export 'manage_user_view.dart';
-export 'manage_user_action.dart';
+import '../../../lib.dart';
+import 'package:share_plus/share_plus.dart';
+
+class ShareViewModel extends GetxController {
+  late UserBox me;
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    me = Get.arguments.first;
+  }
+
+  void share() {
+    final String message = 'me_shareContent'
+        .trParams({'name': me.nameStr, 'publicKey': me.publicKey!});
+    debugPrint(message);
+    Share.share(
+      message,
+      sharePositionOrigin: Rect.fromCenter(
+          center: const Offset(100, 100), width: 100, height: 100),
+    );
+  }
+}

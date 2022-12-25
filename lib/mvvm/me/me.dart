@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -18,7 +18,7 @@
  */
 
 export 'me_view.dart';
-export 'me_controllerl.dart';
+export 'me_action.dart';
 export 'profile/profile.dart';
 export 'set_display_mode/set_display_mode.dart';
 export 'set_language/set_language.dart';

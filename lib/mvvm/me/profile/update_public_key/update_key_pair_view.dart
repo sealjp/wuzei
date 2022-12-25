@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import 'package:flutter/cupertino.dart';
 
 import '../../../../lib.dart';
@@ -27,7 +26,7 @@ class UpdateKeyPairView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MeController m = Get.find();
+    final ApplicationViewModel m = Get.find();
     return Scaffold(
         appBar: AppBar(title: Text('me_updateKeyPair'.tr)),
         body: SafeArea(
@@ -55,7 +54,7 @@ class UpdateKeyPairView extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(8))),
                         child: Padding(
                           padding: EdgeInsets.all(8.wPt),
-                          child: Obx(() => Text(m.me.value.publicKey!)),
+                          child: Obx(() => Text(m.user.value.publicKey!)),
                         )),
                     SizedBox(height: 60.wPt),
                     StadiumTextButton(
@@ -71,16 +70,16 @@ class UpdateAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MeController m = Get.find();
+    final ApplicationViewModel m = Get.find();
     return CupertinoAlertDialog(
       title: Text('common_remind'.tr),
       content: Text('me_updateKeyPairDescript'.tr),
       actions: [
-        TextButton(onPressed: m.back, child: Text('common_cancel'.tr)),
+        TextButton(onPressed: Get.back, child: Text('common_cancel'.tr)),
         TextButton(
             onPressed: () async {
               await m.generateKeyPair();
-              m.back();
+              Get.back();
             },
             child: Text('me_update'.tr))
       ],

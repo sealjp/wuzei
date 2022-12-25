@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -17,37 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import '../../lib.dart';
 
-class MeController extends GetxController {
-  Rx<UserBox> me = UserBox().obs;
-  TextEditingController nameCtrl = TextEditingController();
- 
+extension MeAction on ApplicationViewModel {
+  //  Rx<UserBox> get me => users.first.obs;
 
-  @override
-  void onInit() async {
-    super.onInit();
-    loadMe();
-  }
-
- void loadMe() {
-    me.value = UserDao.queryMe();
-    nameCtrl.text = me.value.nameStr;
-  }
-
-  void updateMe() => UserDao.save(me.value);
+  void updateMe() => UserDao.save(user.value);
 
   Future<void> generateKeyPair() async {
-    me
-      ..value = await RSAUtil.generateMyKeyPair()
-      ..refresh();
-  }
-
-  void back() => Get.back();
-
-    @override
-  void onClose() {
-    nameCtrl.dispose();
+    users.first = await RSAUtil.generateMyKeyPair();
+    users.refresh();
   }
 }

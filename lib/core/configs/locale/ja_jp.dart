@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 
 const Map<String, String> ja_JP = {
   'common_add': '追加する',
@@ -39,15 +38,15 @@ const Map<String, String> ja_JP = {
   'contacts_edit': '連絡先編集',
   'contacts_deleteRemind': '削除OK？',
   'contacts_remove': '連絡先を削除する',
-  'dark':'ダーク',
-  'light':'ライト',
+  'dark': 'ダーク',
+  'light': 'ライト',
   'me_profile': '個人情報',
   'me_sendMyPublicKey': '私の公開鍵を送信する',
   'me_setName': '名前を設定する',
   'me_shareContent': 'これは私の公開鍵です。保存してください。 \n名前:@name, \n公開鍵:@publicKey',
   'me_shareDescript':
       '自分のRSA公開鍵を相手に送信し、相手は本アプリで原文を暗号化して自分に送信し、自分は復号しています。公開鍵を送信するチャネルは、通常の通信チャネルを使用しないでください。例えば,普段はWメッセージソフトウェアで情報を転送する場合は、メールやSMSで送信する必要があります。',
-  'me_sytemMode':'システム',
+  'me_sytemMode': 'システム',
   'me_update': '更新する',
   'me_updateKeyPair': '鍵ペアの更新する',
   'me_updateKeyPairDescript':

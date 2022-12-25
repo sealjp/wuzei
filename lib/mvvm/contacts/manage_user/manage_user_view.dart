@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 
 import 'package:flutter/cupertino.dart';
 
@@ -52,15 +51,14 @@ class ManageUserView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UsersController m = Get.find();
+    final ApplicationViewModel m = Get.find();
     return Scaffold(
         appBar: AppBar(
           title: Text(title.tr),
           actions: [
             IconButton(
-                    onPressed: m.paste,
-                    icon: const Icon(CupertinoIcons.doc_on_clipboard
-                    )),
+                onPressed: m.pasteUser,
+                icon: const Icon(CupertinoIcons.doc_on_clipboard)),
             Visibility(
                 visible: m.user.value.id != 1,
                 child: IconButton(
@@ -68,7 +66,6 @@ class ManageUserView extends StatelessWidget {
                     icon: const Icon(
                       CupertinoIcons.trash,
                     ))),
-
           ],
         ),
         body: SafeArea(
@@ -87,14 +84,14 @@ class ManageUserView extends StatelessWidget {
                   decoration: InputDecoration(
                       errorText: m.nameErrorText.value,
                       suffixIcon: IconButton(
-                          onPressed: m.deleteName,
+                          onPressed: m.clearName,
                           icon: const Icon(Icons.close_rounded)))),
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Text('common_rsaPublicKey'.tr),
               ),
               Obx(() => TextFormField(
-                enabled: m.user.value.id==1?false:true,
+                  enabled: m.user.value.id == 1 ? false : true,
                   controller: m.publicKeyCtrl,
                   onChanged: m.validateKey,
                   minLines: 13,
@@ -120,7 +117,7 @@ class DeleteAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UsersController m = Get.find();
+    final ApplicationViewModel m = Get.find();
     return CupertinoAlertDialog(
       title: Text('contacts_deleteRemind'.tr),
       actions: [
