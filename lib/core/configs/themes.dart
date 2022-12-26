@@ -80,18 +80,21 @@ ThemeData lightTheme = ThemeData(
     // ),
   ),
   inputDecorationTheme: InputDecorationTheme(
-       focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.hPt),
-                  borderSide:const BorderSide(
-                    color: Colors.blue,
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.hPt),
-                  borderSide: BorderSide(
-                    color: Colors.grey[100]!,
-                    width: 2.0,
-                  )),filled: true,  fillColor: Colors.grey[100],),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8.hPt),
+      borderSide: const BorderSide(
+        color: Colors.blue,
+      ),
+    ),
+    enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.hPt),
+        borderSide: BorderSide(
+          color: Colors.grey[100]!,
+          width: 2.0,
+        )),
+    filled: true,
+    fillColor: Colors.grey[100],
+  ),
 );
 
 ThemeData darkTheme = ThemeData(
@@ -124,16 +127,18 @@ ThemeData darkTheme = ThemeData(
       titleTextStyle: const TextStyle(fontSize: 16, color: Colors.grey)),
   bottomAppBarTheme: BottomAppBarTheme(color: Colors.grey[800], elevation: 0),
   inputDecorationTheme: InputDecorationTheme(
-        focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.hPt),
-                  borderSide:const BorderSide(
-                    color: Colors.blue,
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.hPt),
-                  borderSide: BorderSide(
-                    color: Colors.grey[800]!,
-                    width: 2.0,
-                  )),filled: true, fillColor: Colors.grey[800]),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.hPt),
+        borderSide: const BorderSide(
+          color: Colors.blue,
+        ),
+      ),
+      enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.hPt),
+          borderSide: BorderSide(
+            color: Colors.grey[800]!,
+            width: 2.0,
+          )),
+      filled: true,
+      fillColor: Colors.grey[800]),
 );

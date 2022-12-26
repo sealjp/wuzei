@@ -24,3 +24,4 @@ export 'safe_box.dart';
 export 'screen_size.dart';
 export 'string_extension.dart';
 export 'theme_handler.dart';
+export 'validator.dart';

@@ -22,11 +22,7 @@ import 'package:flutter/services.dart';
 import '../../../lib.dart';
 
 extension ManageUserAction on ApplicationViewModel {
-  RxBool get isFilled => (nameErrorText.value == null &&
-          keyErrorText.isEmpty &&
-          nameCtrl.text.isNotEmpty &&
-          publicKeyCtrl.text.isNotEmpty)
-      .obs;
+ 
 
   void clearKey() => publicKeyCtrl.clear();
 
@@ -54,34 +50,10 @@ extension ManageUserAction on ApplicationViewModel {
       ..back();
   }
 
-  void validateName(String? v) {
-    nameErrorText.value = null;
-    if (v?.isEmpty ?? true) nameErrorText.value = 'contacts_notName'.tr;
-  }
-
-  void validateKey(String? v) {
-    keyErrorText.value = '';
-    final int length = v?.length ?? 0;
-    if (length != 367 ||
-        v?.substring(0, 44) != 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA' ||
-        v?.substring(length - 6, length) != 'IDAQAB')
-      keyErrorText.value = 'contacts_notRSA'.tr;
-  }
-  // String? validateKey(String? v) {
-  //   final int length = v?.length ?? 0;
-  //   if (length != 367 ||
-  //       v?.substring(0, 44) != 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA' ||
-  //       v?.substring(length - 6, length) != 'IDAQAB')
-  //     return 'contacts_notRSA'.tr;
-  //   return null;
-  // }
-
   /// edit or add user
   void manageUser() {
-    validateName(nameCtrl.text);
-    validateKey(publicKeyCtrl.text);
-    if (nameCtrl.text.isEmpty && publicKeyCtrl.text.isEmpty) return;
-    final DateTime now = DateTime.now();
+     if (manageUserFormKey.currentState!.validate()){
+       final DateTime now = DateTime.now();
     user.value
       ..name = nameCtrl.text
       ..publicKey = publicKeyCtrl.text
@@ -93,5 +65,6 @@ extension ManageUserAction on ApplicationViewModel {
         : users.add(user.value);
     users.refresh();
     Get.back();
+     }       
   }
 }

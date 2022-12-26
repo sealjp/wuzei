@@ -33,10 +33,8 @@ class ApplicationViewModel extends GetxController {
   RxInt inputBytes = 0.obs;
   RxString output = ''.obs;
 
+  final manageUserFormKey = GlobalKey<FormState>();
   TextEditingController nameCtrl = TextEditingController();
-  Rx<String?> nameErrorText = null.obs;
-  Rx<String> keyErrorText = ''.obs;
-
   TextEditingController publicKeyCtrl = TextEditingController();
 
   @override

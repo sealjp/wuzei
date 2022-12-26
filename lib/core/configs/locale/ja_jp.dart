@@ -37,7 +37,6 @@ const Map<String, String> ja_JP = {
   'contacts_add': '連絡先を追加する',
   'contacts_edit': '連絡先編集',
   'contacts_deleteRemind': '削除OK？',
-  'contacts_nitRSA':'RSA公開鍵ではありません',
   'contacts_remove': '連絡先を削除する',
   'dark': 'ダーク',
   'light': 'ライト',
@@ -55,4 +54,6 @@ const Map<String, String> ja_JP = {
   'convert_decodedText': '原文',
   'convert_encodedText': 'RSA暗号文',
   'convert_selectContact': '連絡先を選択する',
+  'validator_notEmpty': '入力してください！',
+  'validator_notRSA':'RSA公開鍵ではありません',
 };

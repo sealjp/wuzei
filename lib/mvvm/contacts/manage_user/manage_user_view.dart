@@ -55,6 +55,7 @@ class ManageUserView extends StatelessWidget {
     return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
             appBar: AppBar(
               title: Text(title.tr),
               actions: [
@@ -74,47 +75,41 @@ class ManageUserView extends StatelessWidget {
             body: SafeArea(
                 child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: ListView(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Text('common_name'.tr),
-                  ),
-                  TextFormField(
-                      controller: m.nameCtrl,
-                      onChanged: m.validateName,
-                      // validator: (v) {
-                      //   return v?.isEmpty??true ? 'empty' : 'ok';
-                      // },
-                      maxLength: 32,
-                      decoration: InputDecoration(
-                          errorText: m.nameErrorText.value,
-                          suffixIcon: IconButton(
-                              onPressed: m.clearName,
-                              icon: const Icon(Icons.close_rounded)))),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Text('common_rsaPublicKey'.tr),
-                  ),
-                  Obx(() => TextFormField(
-                        enabled: m.user.value.id == 1 ? false : true,
-                        controller: m.publicKeyCtrl,
-                        // validator: m.validateKey,
-                        onChanged: m.validateKey,
-                        minLines: 13,
-                        maxLines: 13,
-                        maxLength: 392,
-                        decoration:
-                            InputDecoration(errorText: m.keyErrorText.value)
-                      )),
-                  Obx(() => Visibility(
-                      visible: m.isFilled.value,
-                      child: StadiumTextButton(
-                        title: manageBtnTitle.tr,
-                        onPressed: m.isFilled.value ? m.manageUser : null,
-                      ))),
-                  const SizedBox(height: 20),
-                ],
+              child: Form(
+                key: m.manageUserFormKey,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text('common_name'.tr),
+                    ),
+                    TextFormField(
+                        controller: m.nameCtrl,
+                        validator: Validator.name,
+                        maxLength: 32,
+                        decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                                onPressed: m.clearName,
+                                icon: const Icon(Icons.close_rounded)))),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text('common_rsaPublicKey'.tr),
+                    ),
+                    Obx(() => TextFormField(
+                          enabled: m.user.value.id == 1 ? false : true,
+                          controller: m.publicKeyCtrl,
+                          validator: Validator.publickey,
+                          minLines: 13,
+                          maxLines: 13,
+                          maxLength: 392,
+                        )),
+                  StadiumTextButton(
+                          title: manageBtnTitle.tr,
+                          onPressed: m.manageUser,
+                        ),
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
             ))));
   }
