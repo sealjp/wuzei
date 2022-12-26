@@ -23,12 +23,14 @@ extension ContactsAction on ApplicationViewModel {
   void newUser() => user.value = UserBox();
 
   void toAddView() {
+    userIndex = users.length;
     newUser();
     Get.to(const AddUserView());
   }
 
   void toEditView(int i) {
     userIndex = i;
+    user.value = users[i];
     Get.to(const EditUserView());
   }
 }

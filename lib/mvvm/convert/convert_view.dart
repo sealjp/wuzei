@@ -27,7 +27,9 @@ class ConvertView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ApplicationViewModel m = Get.find();
-    return Scaffold(
+    return GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
           title: Row(
@@ -45,11 +47,11 @@ class ConvertView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView(
-            children: const [InputField(), Divider(), OutputContent()],
+            children: const [InputField(), SizedBox(height:20),OutputContent()],
           ),
         ),
       ),
-    );
+    ));
   }
 }
 
@@ -59,24 +61,31 @@ class ContactsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ApplicationViewModel m = Get.find();
-    return Column(
-      children: [
-        Container(
-          height: 50.hPt,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('convert_selectContact'.tr,
-                  style: const TextStyle(fontSize: 16))
-            ],
+    return 
+    Container(
+     decoration: BoxDecoration(
+       color:Theme.of(context).cardColor,
+       borderRadius: BorderRadius.circular(16.0),
+     ),
+      child: Column(
+        children: [
+          Container(
+            height: 50.hPt,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('convert_selectContact'.tr,
+                    style: const TextStyle(fontSize: 16))
+              ],
+            ),
           ),
-        ),
-        Expanded(
-            child: ListView.separated(
-                separatorBuilder: (_, __) => const Divider(),
-                itemCount: m.users.length,
-                itemBuilder: (_, index) => UserListTile(index, m.selectUser))),
-      ],
+          Expanded(
+              child: ListView.separated(
+                  separatorBuilder: (_, __) => const Divider(),
+                  itemCount: m.users.length,
+                  itemBuilder: (_, index) => UserListTile(index, m.selectUser))),
+        ],
+      ),
     );
   }
 }
@@ -108,10 +117,7 @@ class OutputTitle extends StatelessWidget {
         Obx(() => Visibility(
             visible: m.encodeMode.value,
             child: TextButton(
-                onPressed: () {
-                  m.loadUsers();
-                  showModal(const ContactsListView(), 600);
-                },
+                onPressed: ()=>showModal(const ContactsListView(), 600),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -139,12 +145,14 @@ class InputField extends StatelessWidget {
             const SizedBox(
               width: 5,
             ),
-            Obx(() => Text(
+            Obx(() =>Visibility(
+              visible: m.encodeMode.value,
+              child:  Text(
                   '${m.inputBytes.value}/245 B',
                   style: TextStyle(
                       color: m.inputBytes.value >= 245
                           ? Theme.of(context).errorColor
-                          : Theme.of(context).disabledColor), 
+                          : Theme.of(context).disabledColor)), 
                 )),
             IconButton(
                 onPressed: m.pasteConvert, icon: const Icon(Icons.paste)),
@@ -158,8 +166,7 @@ class InputField extends StatelessWidget {
             keyboardType: TextInputType.text,
             controller: m.inputCtrl,
             maxLines: 5,
-            minLines: 5,
-            decoration: const InputDecoration(border: InputBorder.none),),
+            minLines: 5,),
       ],
     );
   }
@@ -186,6 +193,8 @@ class OutputContent extends StatelessWidget {
                       : const Icon(Icons.copy)))),
         ]),
         Container(
+          height: 200.hPt,
+          width:380.wPt,
             decoration: BoxDecoration(
                 color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.all(Radius.circular(8.hPt))),

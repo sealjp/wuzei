@@ -28,7 +28,7 @@ extension ConvertAction on ApplicationViewModel {
 
   void inputChanged(String? v) {
     inputBytes.value = v!.bytes();
-    if (inputBytes.value > 245) return;
+    if (encodeMode.value && inputBytes.value > 245) return;
     output.value = (v.isEmpty) ? '' : _output;
   }
 
@@ -55,6 +55,8 @@ extension ConvertAction on ApplicationViewModel {
 
   Future<void> pasteConvert() async {
     final ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);
-    inputCtrl.text = data?.text ?? '';
+    final String v = data?.text ?? '';
+    inputCtrl.text = v;
+    inputChanged(v);
   }
 }

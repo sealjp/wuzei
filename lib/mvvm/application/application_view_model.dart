@@ -24,7 +24,7 @@ class ApplicationViewModel extends GetxController {
 
   RxList<UserBox> users = <UserBox>[].obs;
   int userIndex = 0;
-  Rx<UserBox> get user => users[userIndex].obs;
+  Rx<UserBox> user = UserBox().obs;
 
   late String privateKey;
   RxBool encodeMode = true.obs;
@@ -34,26 +34,39 @@ class ApplicationViewModel extends GetxController {
   RxString output = ''.obs;
 
   TextEditingController nameCtrl = TextEditingController();
-  RxString nameErrorText = ''.obs;
-  RxString keyErrorText = ''.obs;
+  Rx<String?> nameErrorText = null.obs;
+  Rx<String> keyErrorText = ''.obs;
 
   TextEditingController publicKeyCtrl = TextEditingController();
-
-  void switchTab(int i) {
-    tabIndex.value = i;
-    if (i == 2) userIndex = 0;
-  }
 
   @override
   void onInit() async {
     super.onInit();
-    await loadUsers();
+    await _loadUsers();
+    await _loadPrivateKey();
+    _initTab0();
   }
 
-  Future<void> loadUsers() async {
+  Future<void> _loadUsers() async {
     users
       ..value = await UserDao.queryAll()
       ..refresh();
+  }
+
+  Future<void> _loadPrivateKey() async {
+    privateKey = await SafeBox.readPrivateKey() ?? '';
+  }
+
+  void _initTab0() {
+    inputCtrl = TextEditingController(text: '');
+    user.value = users.first;
+  }
+
+  void switchTab(int i) {
+    tabIndex.value = i;
+    if (i == 0) _initTab0();
+    if (i != 0) inputCtrl.dispose();
+    if (i == 2) userIndex = 0;
   }
 
   @override

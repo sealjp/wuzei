@@ -22,8 +22,8 @@ import 'package:flutter/services.dart';
 import '../../../lib.dart';
 
 extension ManageUserAction on ApplicationViewModel {
-  RxBool get isFilled => (nameErrorText.value.isEmpty &&
-          keyErrorText.value.isEmpty &&
+  RxBool get isFilled => (nameErrorText.value==null &&
+          keyErrorText.value==null &&
           nameCtrl.text.isNotEmpty &&
           publicKeyCtrl.text.isNotEmpty)
       .obs;
@@ -46,14 +46,16 @@ extension ManageUserAction on ApplicationViewModel {
     if (user.value.id == 1) return;
     UserDao.removeUser(user.value.id!);
     newUser();
-    loadUsers();
+    users
+      ..removeAt(userIndex)
+      ..refresh();
     Get
       ..back()
       ..back();
   }
 
   void validateName(String? v) {
-    nameErrorText.value = '';
+    nameErrorText.value = null;
     if (v?.isEmpty ?? true) nameErrorText.value = 'contacts_notName'.tr;
   }
 
@@ -65,6 +67,14 @@ extension ManageUserAction on ApplicationViewModel {
         v?.substring(length - 6, length) != 'IDAQAB')
       keyErrorText.value = 'contacts_notRSA'.tr;
   }
+  // String? validateKey(String? v) {
+  //   final int length = v?.length ?? 0;
+  //   if (length != 367 ||
+  //       v?.substring(0, 44) != 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA' ||
+  //       v?.substring(length - 6, length) != 'IDAQAB')
+  //     return 'contacts_notRSA'.tr;
+  //   return null;
+  // }
 
   /// edit or add user
   void manageUser() {
@@ -78,7 +88,10 @@ extension ManageUserAction on ApplicationViewModel {
       ..keyTime = now
       ..contactTime = now;
     UserDao.save(user.value);
-    loadUsers();
+    userIndex < users.length
+        ? users[userIndex] = user.value
+        : users.add(user.value);
+    users.refresh();
     Get.back();
   }
 }

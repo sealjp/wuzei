@@ -37,6 +37,7 @@ const Map<String, String> zh_Hans = {
   'contacts_add': '添加联系人',
   'contacts_edit': '编辑联系人',
   'contacts_deleteRemind': '确定删除？',
+  'contacts_nitRSA': '不是RSA公钥',
   'contacts_remove': '删除该联系人',
   'dark': '深色模式',
   'light': '浅色模式',

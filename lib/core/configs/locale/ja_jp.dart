@@ -37,6 +37,7 @@ const Map<String, String> ja_JP = {
   'contacts_add': '連絡先を追加する',
   'contacts_edit': '連絡先編集',
   'contacts_deleteRemind': '削除OK？',
+  'contacts_nitRSA':'RSA公開鍵ではありません',
   'contacts_remove': '連絡先を削除する',
   'dark': 'ダーク',
   'light': 'ライト',

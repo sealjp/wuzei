@@ -31,15 +31,15 @@ ThemeData lightTheme = ThemeData(
   dividerColor: Colors.grey[200],
   highlightColor: Colors.black87,
   splashColor: const Color(0x66c8c8c8),
-  
+
   // selectedRowColor: primaryColor,
   unselectedWidgetColor: Colors.grey,
   disabledColor: Colors.grey[300],
   toggleableActiveColor: const Color(0xff1e88e5),
   secondaryHeaderColor: const Color(0xffe3f2fd),
-  
+
   backgroundColor: const Color(0xff90caf9),
-  
+
   dialogBackgroundColor: const Color(0xffffffff),
   indicatorColor: Colors.blue,
   hintColor: const Color(0x8a000000),
@@ -79,11 +79,24 @@ ThemeData lightTheme = ThemeData(
     //   brightness: Brightness.light,
     // ),
   ),
+  inputDecorationTheme: InputDecorationTheme(
+       focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.hPt),
+                  borderSide:const BorderSide(
+                    color: Colors.blue,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.hPt),
+                  borderSide: BorderSide(
+                    color: Colors.grey[100]!,
+                    width: 2.0,
+                  )),filled: true,  fillColor: Colors.grey[100],),
 );
 
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
-  primaryColor: const Color(0xff212121),
+  primaryColor: Colors.blue,
   primaryColorLight: const Color(0xff9e9e9e),
   primaryColorDark: const Color(0xff000000),
   canvasColor: const Color(0xff303030),
@@ -103,12 +116,24 @@ ThemeData darkTheme = ThemeData(
   indicatorColor: const Color(0xff1e88e5), //Color(0xff64ffda),
   hintColor: const Color(0x80ffffff),
   errorColor: const Color(0xffd32f2f),
-  appBarTheme:   AppBarTheme(
+  appBarTheme: AppBarTheme(
       centerTitle: false,
       backgroundColor: Colors.grey[800],
       elevation: 0,
       foregroundColor: Colors.grey,
-      titleTextStyle:const TextStyle(fontSize: 16, color: Colors.grey)),
-  bottomAppBarTheme:
-       BottomAppBarTheme(color: Colors.grey[800], elevation: 0),
+      titleTextStyle: const TextStyle(fontSize: 16, color: Colors.grey)),
+  bottomAppBarTheme: BottomAppBarTheme(color: Colors.grey[800], elevation: 0),
+  inputDecorationTheme: InputDecorationTheme(
+        focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.hPt),
+                  borderSide:const BorderSide(
+                    color: Colors.blue,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.hPt),
+                  borderSide: BorderSide(
+                    color: Colors.grey[800]!,
+                    width: 2.0,
+                  )),filled: true, fillColor: Colors.grey[800]),
 );

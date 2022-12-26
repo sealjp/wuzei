@@ -37,6 +37,7 @@ const Map<String, String> en_US = {
   'contacts_add': 'Add contact',
   'contacts_edit': 'Edit contact',
   'contacts_deleteRemind': 'Are you sure to delete?',
+  'contacts_nitRSA':'Not RSA public key',
   'contacts_remove': 'Delete the contact',
   'dark': 'Dark',
   'light': 'Light',
