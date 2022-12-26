@@ -22,8 +22,8 @@ import 'package:flutter/services.dart';
 import '../../../lib.dart';
 
 extension ManageUserAction on ApplicationViewModel {
-  RxBool get isFilled => (nameErrorText.value==null &&
-          keyErrorText.value==null &&
+  RxBool get isFilled => (nameErrorText.value == null &&
+          keyErrorText.isEmpty &&
           nameCtrl.text.isNotEmpty &&
           publicKeyCtrl.text.isNotEmpty)
       .obs;
@@ -32,10 +32,10 @@ extension ManageUserAction on ApplicationViewModel {
 
   Future<void> pasteUser() async {
     final ClipboardData? cdata = await Clipboard.getData(Clipboard.kTextPlain);
-    if (cdata == null) return;
-    user
-      ..value = UserBox.fromString(cdata.text ?? '')
-      ..refresh();
+    if (cdata == null || cdata.text == null || cdata.text!.isEmpty) return;
+    final UserBox u = UserBox.fromString(cdata.text!);
+    nameCtrl.text = u.name ?? '';
+    publicKeyCtrl.text = u.publicKey ?? '';
   }
 
   void deleteUser() =>
