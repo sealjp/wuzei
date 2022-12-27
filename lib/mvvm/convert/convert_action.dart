@@ -34,11 +34,6 @@ extension ConvertAction on ApplicationViewModel {
 
   void changeMode() => encodeMode.toggle();
 
-  void selectUser(int i) {
-    userIndex = i;
-    Get.back();
-  }
-
   void clearInput() => inputCtrl.clear();
 
   void _setCopyFinished() {

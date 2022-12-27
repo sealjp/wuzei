@@ -20,17 +20,28 @@
 import '../../lib.dart';
 
 extension ContactsAction on ApplicationViewModel {
-  void newUser() => user.value = UserBox();
+  void removeUser() {
+    UserDao.removeUser(user.value.id!);
+    users
+      ..removeAt(userIndex)
+      ..refresh();
+    Get.back();
+  }
+
+  void newUser() => user.value = UserBox(); //
+
+  void _loadTextCtrls() {
+    nameCtrl.text = user.value.name??'';
+    publicKeyCtrl.text = user.value.publicKey ?? '';
+  }
 
   void toAddView() {
     userIndex = users.length;
-    newUser();
     Get.to(const AddUserView());
   }
 
-  void toEditView(int i) {
-    userIndex = i;
-    user.value = users[i];
+  void toEditView() {
+    _loadTextCtrls();
     Get.to(const EditUserView());
   }
 }

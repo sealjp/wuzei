@@ -83,7 +83,7 @@ class ContactsListView extends StatelessWidget {
               child: ListView.separated(
                   separatorBuilder: (_, __) => const Divider(),
                   itemCount: m.users.length,
-                  itemBuilder: (_, index) => UserListTile(index, m.selectUser))),
+                  itemBuilder: (_, index) => UserListTile(index))),
         ],
       ),
     );

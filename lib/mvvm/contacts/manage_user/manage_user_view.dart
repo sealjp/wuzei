@@ -55,7 +55,7 @@ class ManageUserView extends StatelessWidget {
     return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
-          resizeToAvoidBottomInset: false,
+            resizeToAvoidBottomInset: false,
             appBar: AppBar(
               title: Text(title.tr),
               actions: [
@@ -63,13 +63,7 @@ class ManageUserView extends StatelessWidget {
                     onPressed: m.pasteUser,
                     icon: const Icon(CupertinoIcons.doc_on_clipboard),
                     color: Theme.of(context).primaryColor),
-                Visibility(
-                    visible: m.user.value.id != 1,
-                    child: IconButton(
-                        onPressed: m.deleteUser,
-                        icon: const Icon(
-                          CupertinoIcons.trash,
-                        ))),
+
               ],
             ),
             body: SafeArea(
@@ -79,10 +73,7 @@ class ManageUserView extends StatelessWidget {
                 key: m.manageUserFormKey,
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text('common_name'.tr),
-                    ),
+                    const TitleWidget('common_name'),
                     TextFormField(
                         controller: m.nameCtrl,
                         validator: Validator.name,
@@ -91,10 +82,7 @@ class ManageUserView extends StatelessWidget {
                             suffixIcon: IconButton(
                                 onPressed: m.clearName,
                                 icon: const Icon(Icons.close_rounded)))),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text('common_rsaPublicKey'.tr),
-                    ),
+                    const TitleWidget('common_rsaPublicKey'),
                     Obx(() => TextFormField(
                           enabled: m.user.value.id == 1 ? false : true,
                           controller: m.publicKeyCtrl,
@@ -103,10 +91,10 @@ class ManageUserView extends StatelessWidget {
                           maxLines: 13,
                           maxLength: 392,
                         )),
-                  StadiumTextButton(
-                          title: manageBtnTitle.tr,
-                          onPressed: m.manageUser,
-                        ),
+                    StadiumTextButton(
+                      title: manageBtnTitle.tr,
+                      onPressed: m.manageUser,
+                    ),
                     const SizedBox(height: 20),
                   ],
                 ),
@@ -115,21 +103,4 @@ class ManageUserView extends StatelessWidget {
   }
 }
 
-class DeleteAlertDialog extends StatelessWidget {
-  const DeleteAlertDialog({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    final ApplicationViewModel m = Get.find();
-    return CupertinoAlertDialog(
-      title: Text('contacts_deleteRemind'.tr),
-      actions: [
-        TextButton(onPressed: Get.back, child: Text('common_cancel'.tr)),
-        TextButton(
-            onPressed: m.removeUserFromBox,
-            child: Text('common_delete'.tr,
-                style: TextStyle(color: Theme.of(context).colorScheme.error)))
-      ],
-    );
-  }
-}

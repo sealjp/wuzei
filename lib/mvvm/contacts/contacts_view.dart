@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import 'package:flutter/cupertino.dart';
+
 import '../../lib.dart';
 
 class ContactsView extends StatelessWidget {
@@ -49,25 +51,54 @@ class ContactsView extends StatelessWidget {
                             ],
                           ),
                         ))
-                    : UserListTile(index, m.toEditView)));
+                    : UserListTile(index)));
       })),
     );
   }
 }
 
 class UserListTile extends StatelessWidget {
-  const UserListTile(this.index, this.onTap, {super.key});
+  const UserListTile(this.index, {super.key});
   final int index;
-  final Function(int) onTap;
   @override
   Widget build(BuildContext context) {
     final ApplicationViewModel m = Get.find();
     final UserBox user = m.users[index];
+    void showAction() {
+      showCupertinoModalPopup<void>(
+        context: context,
+        builder: (_) => CupertinoActionSheet(
+          actions: <CupertinoActionSheetAction>[
+            CupertinoActionSheetAction(
+                child: Text('common_edit'.tr), onPressed: () => m.toEditView),
+            CupertinoActionSheetAction(
+                isDestructiveAction: true,
+                child: Text('common_delete'.tr),
+                onPressed: m.removeUser)
+          ],
+        ),
+      );
+    }
+
     return ListTile(
-      onTap: () => onTap(index),
+      onTap: () {
+        m.userIndex = index;
+        if (m.tabIndex.value == 0) Get.back();
+        user.id == 1 ? m.toEditView() : showAction();
+      },
       leading: SizedBox(child: CircleAvatar(child: Text(user.initial))),
       title: Text(user.nameStr),
-      trailing: Text(user.contactTime?.yyyyMmDdHhMmSs ?? ''),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(user.contactTime?.yyyyMmDdHhMmSs ?? ''),
+          const SizedBox(width: 10),
+          Visibility(
+              visible: m.tabIndex.value == 1,
+              child: Icon(user.id == 1 ? Icons.edit : Icons.more_horiz_outlined,
+                  color: Theme.of(context).primaryColor))
+        ],
+      ),
     );
   }
 }

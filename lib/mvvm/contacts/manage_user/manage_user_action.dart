@@ -34,21 +34,7 @@ extension ManageUserAction on ApplicationViewModel {
     publicKeyCtrl.text = u.publicKey ?? '';
   }
 
-  void deleteUser() =>
-      user.value.id == 0 ? newUser() : Get.dialog(const DeleteAlertDialog());
 
-  void removeUserFromBox() {
-    // must not remove me. only update
-    if (user.value.id == 1) return;
-    UserDao.removeUser(user.value.id!);
-    newUser();
-    users
-      ..removeAt(userIndex)
-      ..refresh();
-    Get
-      ..back()
-      ..back();
-  }
 
   /// edit or add user
   void manageUser() {

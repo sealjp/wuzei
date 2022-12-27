@@ -24,7 +24,8 @@ class ApplicationViewModel extends GetxController {
 
   RxList<UserBox> users = <UserBox>[].obs;
   int userIndex = 0;
-  Rx<UserBox> user = UserBox().obs;
+  Rx<UserBox> get user =>
+      userIndex < users.length ? users.value[userIndex].obs : UserBox().obs;
 
   late String privateKey;
   RxBool encodeMode = true.obs;
@@ -60,11 +61,14 @@ class ApplicationViewModel extends GetxController {
     user.value = users.first;
   }
 
+  int get meIndex=> 
+    users.indexWhere((u) => u.id == 1);
+ 
+
   void switchTab(int i) {
     tabIndex.value = i;
     if (i == 0) _initTab0();
-    if (i != 0) inputCtrl.dispose();
-    if (i == 2) userIndex = 0;
+    if (i == 2) userIndex = meIndex;
   }
 
   @override
