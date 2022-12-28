@@ -1,4 +1,4 @@
-# Wuzei(https://github.com/sealjp/wuzei)  
+# [Wuzei](https://github.com/sealjp/wuzei)  
 [![platforms](https://img.shields.io/badge/platform-android_|_ios-blue)](https://github.com/sealjp/wuzei/releases)
 [![release](https://img.shields.io/github/v/release/sealjp/wuzei?sort=semver)](https://github.com/sealjp/wuzei/releases)
 [![license GPL-3.0](https://img.shields.io/github/license/sealjp/wuzei.svg?style=flat)](https://github.com/sealjp/wuzei/blob/master/LICENSE)
