@@ -41,7 +41,7 @@ class ApplicationViewModel extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    await _loadUsers();
+   Future.delayed(Duration.zero,  _loadUsers);
     await _loadPrivateKey();
     _initTab0();
   }
@@ -57,15 +57,14 @@ class ApplicationViewModel extends GetxController {
   }
 
   void _initTab0() {
-    inputCtrl = TextEditingController(text: '');
     user.value = users.first;
   }
 
-  int get meIndex=> 
-    users.indexWhere((u) => u.id == 1);
- 
+  int get meIndex => users.indexWhere((u) => u.id == 1);
 
   void switchTab(int i) {
+    print(users.first.id);
+    print('users.first.id');
     tabIndex.value = i;
     if (i == 0) _initTab0();
     if (i == 2) userIndex = meIndex;

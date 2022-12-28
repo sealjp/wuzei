@@ -63,7 +63,6 @@ class ManageUserView extends StatelessWidget {
                     onPressed: m.pasteUser,
                     icon: const Icon(CupertinoIcons.doc_on_clipboard),
                     color: Theme.of(context).primaryColor),
-
               ],
             ),
             body: SafeArea(
@@ -74,14 +73,7 @@ class ManageUserView extends StatelessWidget {
                 child: Column(
                   children: [
                     const TitleWidget('common_name'),
-                    TextFormField(
-                        controller: m.nameCtrl,
-                        validator: Validator.name,
-                        maxLength: 32,
-                        decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                                onPressed: m.clearName,
-                                icon: const Icon(Icons.close_rounded)))),
+                    const NameInput(),
                     const TitleWidget('common_rsaPublicKey'),
                     Obx(() => TextFormField(
                           enabled: m.user.value.id == 1 ? false : true,
@@ -102,5 +94,3 @@ class ManageUserView extends StatelessWidget {
             ))));
   }
 }
-
-

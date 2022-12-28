@@ -32,12 +32,12 @@ class ApplicationView extends StatelessWidget {
         initialIndex: m.tabIndex.value,
         length: 3,
         child: Scaffold(
-          body: TabBarView(
-            physics: const NeverScrollableScrollPhysics(),
+          body:const TabBarView(
+            physics:  NeverScrollableScrollPhysics(),
             children: [
-              if (m.users.isEmpty) Container() else const ConvertView(),
-              const ContactsView(),
-              const MeView()
+               ConvertView(),
+               ContactsView(),
+               MeView()
             ],
           ),
           bottomNavigationBar: BottomAppBar(

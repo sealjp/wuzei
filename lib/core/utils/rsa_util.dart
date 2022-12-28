@@ -17,8 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import 'dart:typed_data';
-
 import 'package:crypton/crypton.dart';
 
 import '../../lib.dart';
@@ -41,7 +39,6 @@ class RSAUtil {
     await SafeBox.savePrivateKey(privateKey);
     return me;
   }
-
 
 
   static String encode(String publicKey, String message) {

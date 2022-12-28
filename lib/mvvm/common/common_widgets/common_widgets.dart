@@ -20,4 +20,5 @@
 export 'bottom_sheet.dart';
 export 'buttons.dart';
 export 'list_tile.dart';
+export 'name_input.dart';
 export 'title.dart';

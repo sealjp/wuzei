@@ -40,7 +40,10 @@ class CommonListTile extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(8.wPt),
       child: ListTile(
-          onTap: () => Get.to(nextPage, arguments: nextPageArgu),
+          onTap: () {
+            if(nextPage !=null)
+            Get.to(nextPage, arguments: nextPageArgu);
+          },
           leading: icon == null ? null : Icon(icon),
           title: Text(title),
           trailing: Row(

@@ -53,5 +53,5 @@ class UserDao {
 
   static removeUser(int id) => objectbox.userBox.remove(id);
 
-  static void save(UserBox box) => objectbox.userBox.put(box);
+  static int save(UserBox box) => objectbox.userBox.put(box);
 }

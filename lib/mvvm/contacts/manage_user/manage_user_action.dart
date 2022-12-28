@@ -45,7 +45,7 @@ extension ManageUserAction on ApplicationViewModel {
       ..publicKey = publicKeyCtrl.text
       ..keyTime = now
       ..contactTime = now;
-    UserDao.save(user.value);
+    user.value.id = UserDao.save(user.value);
     userIndex < users.length
         ? users[userIndex] = user.value
         : users.add(user.value);

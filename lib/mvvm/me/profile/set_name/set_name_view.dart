@@ -25,31 +25,19 @@ class SetNameView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ApplicationViewModel m = Get.find();
+     m.nameCtrl.text = m.user.value.name??'';
     return Scaffold(
-        appBar: AppBar(
-            // leading: TextButton(
-            //   child: Text('common_cancel'.tr),
-            //   onPressed: m.back,
-            // ),
-            actions: [
-              TextButton(
-                child: Text('common_complete'.tr),
-                onPressed: m.complete,
-              )
-            ], title: Text('me_setName'.tr)),
+        appBar: AppBar(actions: [
+          TextButton(
+            child: Text('common_complete'.tr),
+            onPressed: m.complete,
+          )
+        ], title: Text('me_setName'.tr)),
         body: SafeArea(
             child: Padding(
                 padding: EdgeInsets.all(16.wPt),
                 child: Column(
-                  children: [
-                    TextFormField(
-                        controller: m.nameCtrl,
-                        maxLength: 32,
-                        decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                                onPressed: m.clearName, //m.clear,
-                                icon: const Icon(Icons.close_rounded)))),
-                  ],
+                  children: const [NameInput()],
                 ))));
   }
 }
