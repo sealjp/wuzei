@@ -24,8 +24,7 @@ class ApplicationViewModel extends GetxController {
 
   RxList<UserBox> users = <UserBox>[].obs;
   int userIndex = 0;
-  Rx<UserBox> get user =>
-      userIndex < users.length ? users.value[userIndex].obs : UserBox().obs;
+  Rx<UserBox> get user => isEditUser ? users.value[userIndex].obs : UserBox().obs;
 
   late String privateKey;
   RxBool encodeMode = true.obs;
@@ -38,18 +37,24 @@ class ApplicationViewModel extends GetxController {
   TextEditingController nameCtrl = TextEditingController();
   TextEditingController publicKeyCtrl = TextEditingController();
 
+  /// false add new user
+  bool get isEditUser => userIndex < users.length ? true : false;
+
   @override
   void onInit() async {
     super.onInit();
-   Future.delayed(Duration.zero,  _loadUsers);
+    await _loadUsers();
     await _loadPrivateKey();
     _initTab0();
   }
 
   Future<void> _loadUsers() async {
-    users
-      ..value = await UserDao.queryAll()
-      ..refresh();
+    users.value = await UserDao.queryAll();
+    if (users.isEmpty) {
+      await RSAUtil.generateMyKeyPair();
+      await _loadUsers();
+    }
+    users.refresh();
   }
 
   Future<void> _loadPrivateKey() async {
@@ -63,8 +68,6 @@ class ApplicationViewModel extends GetxController {
   int get meIndex => users.indexWhere((u) => u.id == 1);
 
   void switchTab(int i) {
-    print(users.first.id);
-    print('users.first.id');
     tabIndex.value = i;
     if (i == 0) _initTab0();
     if (i == 2) userIndex = meIndex;

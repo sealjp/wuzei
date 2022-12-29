@@ -37,6 +37,7 @@ extension ContactsAction on ApplicationViewModel {
 
   void toAddView() {
     userIndex = users.length;
+    _loadTextCtrls();
     Get.to(const AddUserView());
   }
 

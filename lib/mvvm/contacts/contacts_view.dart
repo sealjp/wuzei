@@ -70,7 +70,7 @@ class UserListTile extends StatelessWidget {
         builder: (_) => CupertinoActionSheet(
           actions: <CupertinoActionSheetAction>[
             CupertinoActionSheetAction(
-                child: Text('common_edit'.tr), onPressed: () => m.toEditView),
+                child: Text('common_edit'.tr), onPressed: m.toEditView),
             CupertinoActionSheetAction(
                 isDestructiveAction: true,
                 child: Text('common_delete'.tr),

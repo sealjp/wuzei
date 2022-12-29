@@ -29,10 +29,6 @@ class UserDao {
     final query = queryB.build();
     res = query.find();
     query.close();
-    if (res.isEmpty) {
-      await RSAUtil.generateMyKeyPair();
-      queryAll();
-    }
     return res;
   }
 

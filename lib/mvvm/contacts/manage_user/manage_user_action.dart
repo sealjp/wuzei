@@ -22,8 +22,6 @@ import 'package:flutter/services.dart';
 import '../../../lib.dart';
 
 extension ManageUserAction on ApplicationViewModel {
- 
-
   void clearKey() => publicKeyCtrl.clear();
 
   Future<void> pasteUser() async {
@@ -34,23 +32,20 @@ extension ManageUserAction on ApplicationViewModel {
     publicKeyCtrl.text = u.publicKey ?? '';
   }
 
-
-
   /// edit or add user
   void manageUser() {
-     if (manageUserFormKey.currentState!.validate()){
-       final DateTime now = DateTime.now();
+    if (!manageUserFormKey.currentState!.validate()) return;
+    final DateTime now = DateTime.now();
     user.value
-      ..name = nameCtrl.text
       ..publicKey = publicKeyCtrl.text
       ..keyTime = now
       ..contactTime = now;
+    isEditUser
+        ? user.value.alias = nameCtrl.text
+        : user.value.name = nameCtrl.text;
     user.value.id = UserDao.save(user.value);
-    userIndex < users.length
-        ? users[userIndex] = user.value
-        : users.add(user.value);
+    isEditUser ? users[userIndex] = user.value : users.add(user.value);
     users.refresh();
     Get.back();
-     }       
   }
 }

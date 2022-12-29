@@ -122,7 +122,7 @@ class OutputTitle extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                   Visibility(
-                    visible: m.users.isNotEmpty,
+                    visible: m.users.value.isNotEmpty,
                     child: Text('(${m.user.value.nameStr})')),
                     const Icon(Icons.expand_more_rounded)
                   ],
