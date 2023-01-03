@@ -2,7 +2,7 @@
  * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
  * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -39,7 +39,6 @@ class RSAUtil {
     await SafeBox.savePrivateKey(privateKey);
     return me;
   }
-
 
   static String encode(String publicKey, String message) {
     final RSAPublicKey _publicKey = RSAPublicKey.fromString(publicKey);

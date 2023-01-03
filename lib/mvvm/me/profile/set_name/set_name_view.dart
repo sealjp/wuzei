@@ -25,7 +25,7 @@ class SetNameView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ApplicationViewModel m = Get.find();
-     m.nameCtrl.text = m.user.value.name??'';
+    m.nameCtrl.text = m.user.value.nameStr;
     return Scaffold(
         appBar: AppBar(actions: [
           TextButton(

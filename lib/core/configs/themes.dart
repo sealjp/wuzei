@@ -2,7 +2,7 @@
  * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
  * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -28,11 +28,10 @@ ThemeData lightTheme = ThemeData(
   canvasColor: const Color(0xfffafafa),
   scaffoldBackgroundColor: Colors.grey[50],
   cardColor: Colors.grey[100],
-  dividerColor: Colors.grey[200],
+  dividerColor: Colors.grey[300],
   highlightColor: Colors.black87,
   splashColor: const Color(0x66c8c8c8),
-
-  // selectedRowColor: primaryColor,
+  selectedRowColor:  Colors.black87,
   unselectedWidgetColor: Colors.grey,
   disabledColor: Colors.grey[300],
   toggleableActiveColor: const Color(0xff1e88e5),
@@ -65,19 +64,6 @@ ThemeData lightTheme = ThemeData(
     splashColor: Color(0x1f000000),
     focusColor: Color(0x1f000000),
     hoverColor: Color(0x0a000000),
-    // colorScheme: ColorScheme(
-    //   primary: primaryColor,
-    //   secondary: Color(0xff2196f3),
-    //   surface: Color(0xffffffff),
-    //   background: Color(0xff90caf9),
-    //   error: Color(0xffd32f2f),
-    //   onPrimary: Color(0xffffffff),
-    //   onSecondary: Color(0xffffffff),
-    //   onSurface: Color(0xff000000),
-    //   onBackground: Colors.black12,
-    //   onError: Color(0xffffffff),
-    //   brightness: Brightness.light,
-    // ),
   ),
   inputDecorationTheme: InputDecorationTheme(
     focusedBorder: OutlineInputBorder(

@@ -2,7 +2,7 @@
  * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
  * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -28,10 +28,9 @@ extension SetNameAction on ApplicationViewModel {
   void clearName() => nameCtrl.clear();
 
   void complete() {
-    user.value.alias = nameCtrl.text;
-    updateMe();
-    // loadMe();
-    // back();
+    users[meIndex].alias = nameCtrl.text;
+    users.refresh();
+    UserDao.save(users[meIndex]);
     Get.back();
   }
 }

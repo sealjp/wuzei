@@ -2,7 +2,7 @@
  * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
  * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -24,7 +24,8 @@ class ApplicationViewModel extends GetxController {
 
   RxList<UserBox> users = <UserBox>[].obs;
   int userIndex = 0;
-  Rx<UserBox> get user => isEditUser ? users.value[userIndex].obs : UserBox().obs;
+  Rx<UserBox> get user =>
+      isEditUser ? users.value[userIndex].obs : UserBox().obs;
 
   late String privateKey;
   RxBool encodeMode = true.obs;
@@ -37,7 +38,7 @@ class ApplicationViewModel extends GetxController {
   TextEditingController nameCtrl = TextEditingController();
   TextEditingController publicKeyCtrl = TextEditingController();
 
-  /// false add new user
+  /// false: add new user
   bool get isEditUser => userIndex < users.length ? true : false;
 
   @override
@@ -68,6 +69,7 @@ class ApplicationViewModel extends GetxController {
   int get meIndex => users.indexWhere((u) => u.id == 1);
 
   void switchTab(int i) {
+    debugPrint('switch tab');
     tabIndex.value = i;
     if (i == 0) _initTab0();
     if (i == 2) userIndex = meIndex;

@@ -2,7 +2,7 @@
  * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
  * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -25,7 +25,6 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ApplicationViewModel m = Get.find();
-    // final Map<String, String> map = {'name': m.user.value.name??'','key': m.user.value.publicKey ?? ''};
     return Scaffold(
         appBar: AppBar(title: Text('me_profile'.tr)),
         body: SafeArea(
@@ -42,7 +41,7 @@ class ProfileView extends StatelessWidget {
                         title: 'common_rsaPublicKey'.tr,
                         trailing:
                             Obx(() => Text(m.user.value.publicKeyPartStr)),
-                        nextPage: const UpdateKeyPairView()),
+                        nextPage: const UpdatePublicKeyView()),
                     const Divider(),
                     CommonListTile(
                         title: 'common_timeOfCreateKey'.tr,

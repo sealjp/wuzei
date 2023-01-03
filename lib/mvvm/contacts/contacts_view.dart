@@ -2,7 +2,7 @@
  * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
  * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -43,7 +43,7 @@ class ContactsView extends StatelessWidget {
                     ? Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextButton(
-                          onPressed: m.toAddView,
+                          onPressed: m.toAdd,
                           child: Row(
                             children: [
                               const Icon(Icons.add),
@@ -70,7 +70,7 @@ class UserListTile extends StatelessWidget {
         builder: (_) => CupertinoActionSheet(
           actions: <CupertinoActionSheetAction>[
             CupertinoActionSheetAction(
-                child: Text('common_edit'.tr), onPressed: m.toEditView),
+                child: Text('common_edit'.tr), onPressed: m.toEdit),
             CupertinoActionSheetAction(
                 isDestructiveAction: true,
                 child: Text('common_delete'.tr),
@@ -84,7 +84,7 @@ class UserListTile extends StatelessWidget {
       onTap: () {
         m.userIndex = index;
         if (m.tabIndex.value == 0) Get.back();
-        user.id == 1 ? m.toEditView() : showAction();
+        user.id == 1 ? m.toEdit() : showAction();
       },
       leading: SizedBox(child: CircleAvatar(child: Text(user.initial))),
       title: Text(user.nameStr),

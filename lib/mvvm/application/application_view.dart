@@ -2,7 +2,7 @@
  * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
  * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -32,13 +32,9 @@ class ApplicationView extends StatelessWidget {
         initialIndex: m.tabIndex.value,
         length: 3,
         child: Scaffold(
-          body:const TabBarView(
-            physics:  NeverScrollableScrollPhysics(),
-            children: [
-               ConvertView(),
-               ContactsView(),
-               MeView()
-            ],
+          body: const TabBarView(
+            physics: NeverScrollableScrollPhysics(),
+            children: [ConvertView(), ContactsView(), MeView()],
           ),
           bottomNavigationBar: BottomAppBar(
             notchMargin: 6,
@@ -86,9 +82,7 @@ class BottomItem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(top: 3.0),
             child: Center(
-              child: Obx(
-                () {
-                  return Column(
+              child: Obx(() => Column(
                     children: <Widget>[
                       if (index == m.tabIndex.value)
                         Icon(selectedIconData, color: selectedColor)
@@ -102,9 +96,7 @@ class BottomItem extends StatelessWidget {
                                 : unselectedColor),
                       ),
                     ],
-                  );
-                },
-              ),
+                  )),
             ),
           ),
         ),

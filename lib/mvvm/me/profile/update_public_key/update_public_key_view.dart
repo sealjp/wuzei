@@ -2,7 +2,7 @@
  * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
  * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -21,14 +21,14 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../lib.dart';
 
-class UpdateKeyPairView extends StatelessWidget {
-  const UpdateKeyPairView({super.key});
+class UpdatePublicKeyView extends StatelessWidget {
+  const UpdatePublicKeyView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final ApplicationViewModel m = Get.find();
     return Scaffold(
-        appBar: AppBar(title: Text('me_updateKeyPair'.tr)),
+        appBar: AppBar(title: Text('me_updatePublicKey'.tr)),
         body: SafeArea(
             child: Padding(
                 padding: EdgeInsets.all(16.wPt),
@@ -36,7 +36,7 @@ class UpdateKeyPairView extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Expanded(child: Text('me_updateKeyPairDescript'.tr)),
+                        Expanded(child: Text('me_updatePublicKeyDescript'.tr)),
                       ],
                     ),
                     SizedBox(height: 20.wPt),
@@ -73,14 +73,11 @@ class UpdateAlertDialog extends StatelessWidget {
     final ApplicationViewModel m = Get.find();
     return CupertinoAlertDialog(
       title: Text('common_remind'.tr),
-      content: Text('me_updateKeyPairDescript'.tr),
+      content: Text('me_updatePublicKeyDescript'.tr),
       actions: [
         TextButton(onPressed: Get.back, child: Text('common_cancel'.tr)),
         TextButton(
-            onPressed: () async {
-              await m.generateKeyPair();
-              Get.back();
-            },
+            onPressed:m.generateKeyPair,
             child: Text('me_update'.tr))
       ],
     );

@@ -43,9 +43,12 @@ class UserBox {
 
   String get publicKeyPartStr => _subString(publicKey ?? '');
 
-  String get nameStr => alias ?? name ?? '';
+  String get nameStr {
+    if (this.alias != null && this.alias!.isNotEmpty) return this.alias!;
+    return name ?? '';
+  }
 
-  String get initial => nameStr.isEmpty?'': nameStr[0];
+  String get initial => nameStr.isEmpty ? '' : nameStr[0];
 
   String _subString(String v) {
     final int length = v.length;
