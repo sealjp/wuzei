@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -17,16 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 extension DateTimeUtils on DateTime {
-  String _addZero(int v)=> v>= 10  ? '$v' : '0$v';
+  String _addZero(int v) => v >= 10 ? '$v' : '0$v';
   String get mm => _addZero(month);
   String get dd => _addZero(day);
   String get yyyyMmDd => '$year-$mm-$dd';
 
   String get hh => _addZero(hour);
-  String get min =>  _addZero(minute);
-  String get ss =>  _addZero(second);
+  String get min => _addZero(minute);
+  String get ss => _addZero(second);
 
   String get yyyyMmDdHhMmSs => '$yyyyMmDd $hh:$min:$ss';
 }
@@ -37,5 +36,5 @@ extension DoubleUtils on String {
   int get month => int.parse(yyyyMmDdStrs[1]);
   int get day => int.parse(yyyyMmDdStrs[2]);
 
-  DateTime get dateTime => DateTime(year,month,day);
+  DateTime get dateTime => DateTime(year, month, day);
 }

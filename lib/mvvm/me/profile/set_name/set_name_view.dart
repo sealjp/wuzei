@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import '../../../../lib.dart';
 
 class SetNameView extends StatelessWidget {
@@ -25,33 +24,20 @@ class SetNameView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MeController m = Get.find();
+    final ApplicationViewModel m = Get.find();
+    m.nameCtrl.text = m.user.value.nameStr;
     return Scaffold(
-        appBar: AppBar(
-            // leading: TextButton(
-            //   child: Text('common_cancel'.tr),
-            //   onPressed: m.back,
-            // ),
-            actions: [
-              TextButton(
-                child: Text('common_complete'.tr),
-                onPressed: m.complete,
-              )
-            ],
-            title: Text('me_setName'.tr)),
+        appBar: AppBar(actions: [
+          TextButton(
+            child: Text('common_complete'.tr),
+            onPressed: m.complete,
+          )
+        ], title: Text('me_setName'.tr)),
         body: SafeArea(
             child: Padding(
                 padding: EdgeInsets.all(16.wPt),
                 child: Column(
-                  children: [
-                    TextFormField(
-                        controller: m.nameCtrl,
-                        maxLength: 32,
-                        decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                                onPressed: m.clear, //m.clear,
-                                icon: const Icon(Icons.close_rounded)))),
-                  ],
+                  children: const [NameInput()],
                 ))));
   }
 }

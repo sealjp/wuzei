@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -17,11 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import '../../lib.dart';
 
 class ThemeHandler {
- static ThemeData show() {
+  static ThemeData show() {
     ThemeMode mode = SystemDao.getTheme();
     if (mode == ThemeMode.system) {
       final bool isDark = Get.isPlatformDarkMode;

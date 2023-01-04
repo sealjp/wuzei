@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import '../../../lib.dart';
 
 /*
@@ -26,7 +25,6 @@ https://www.ibabbleon.com/iOS-Language-Codes-ISO-639.html
 */
 
 class AppTranslations extends Translations {
-
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': en_US,

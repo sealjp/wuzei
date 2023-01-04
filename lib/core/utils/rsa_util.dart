@@ -1,8 +1,8 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -16,9 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-
-import 'dart:typed_data';
 
 import 'package:crypton/crypton.dart';
 
@@ -41,11 +38,6 @@ class RSAUtil {
     UserDao.save(me);
     await SafeBox.savePrivateKey(privateKey);
     return me;
-  }
-
-  static int stringBytes(String message) {
-    final x = utf8.encode(message) as Uint8List;
-    return x.length;
   }
 
   static String encode(String publicKey, String message) {

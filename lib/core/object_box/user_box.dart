@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 
 import 'package:objectbox/objectbox.dart';
 
@@ -44,9 +43,12 @@ class UserBox {
 
   String get publicKeyPartStr => _subString(publicKey ?? '');
 
-  String get nameStr => alias ?? name ?? '';
+  String get nameStr {
+    if (this.alias != null && this.alias!.isNotEmpty) return this.alias!;
+    return name ?? '';
+  }
 
-  String get initial => nameStr[0];
+  String get initial => nameStr.isEmpty ? '' : nameStr[0];
 
   String _subString(String v) {
     final int length = v.length;

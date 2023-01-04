@@ -1,6 +1,6 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
  * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
  *
@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 
 const Map<String, String> zh_Hans = {
   'common_add': '添加',
@@ -55,4 +54,6 @@ const Map<String, String> zh_Hans = {
   'convert_decodedText': '原文',
   'convert_encodedText': 'RSA密文',
   'convert_selectContact': '选择联系人',
+  'validator_notEmpty': '必须输入',
+  'validator_notRSA': '不是RSA公钥',
 };

@@ -1,8 +1,8 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -20,10 +20,17 @@
 import '../../../lib.dart';
 import 'package:share_plus/share_plus.dart';
 
-extension ShareAction on MeController {
+class ShareViewModel extends GetxController {
+  late UserBox me;
+  @override
+  void onInit() {
+    super.onInit();
+    me = Get.arguments.first;
+  }
+
   void share() {
     final String message = 'me_shareContent'
-        .trParams({'name': me.value.nameStr, 'publicKey': me.value.publicKey!});
+        .trParams({'name': me.nameStr, 'publicKey': me.publicKey!});
     debugPrint(message);
     Share.share(
       message,

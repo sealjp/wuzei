@@ -1,8 +1,8 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -17,72 +17,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import 'package:flutter/services.dart';
 
 import '../../../lib.dart';
 
-extension ManageUserExtension on UsersController {
-  RxBool get isFilled => (nameErrorText.value.isEmpty &&
-          keyErrorText.value.isEmpty &&
-          nameCtrl.text.isNotEmpty &&
-          publicKeyCtrl.text.isNotEmpty)
-      .obs;
+extension ManageUserAction on ApplicationViewModel {
+  void clearKey() => publicKeyCtrl.clear();
 
-  void deleteName() => nameCtrl.text = '';
-
-  void deleteKey() => publicKeyCtrl.text = '';
-
-  Future<void> paste() async {
+  Future<void> pasteUser() async {
     final ClipboardData? cdata = await Clipboard.getData(Clipboard.kTextPlain);
-    if (cdata == null) return;
-    user
-      ..value = UserBox.fromString(cdata.text ?? '')
-      ..refresh();
-    loadTextCtrls(user.value);
-  }
-
-  void deleteUser() =>
-      user.value.id == 0 ? newUser() : Get.dialog(const DeleteAlertDialog());
-
-  void removeUserFromBox() {
-    // must not remove me. only update
-    if (user.value.id == 1) return;
-    UserDao.removeUser(user.value.id!);
-    newUser();
-    loadUsers();
-    Get
-      ..back()
-      ..back();
-  }
-
-  void validateName(String? v) {
-    nameErrorText.value = '';
-    if (v?.isEmpty ?? true) nameErrorText.value = 'contacts_notName'.tr;
-  }
-
-  void validateKey(String? v) {
-    keyErrorText.value = '';
-    final int length = v?.length ?? 0;
-    if (length != 367 ||
-        v?.substring(0, 44) != 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA' ||
-        v?.substring(length - 6, length) != 'IDAQAB')
-      keyErrorText.value = 'contacts_notRSA'.tr;
+    if (cdata == null || cdata.text == null || cdata.text!.isEmpty) return;
+    final UserBox u = UserBox.fromString(cdata.text!);
+    loadTextCtrls(u);
   }
 
   /// edit or add user
   void manageUser() {
-    validateName(nameCtrl.text);
-    validateKey(publicKeyCtrl.text);
-    if (nameCtrl.text.isEmpty && publicKeyCtrl.text.isEmpty) return;
+    print("object");
+    if (!manageUserFormKey.currentState!.validate()) return;
     final DateTime now = DateTime.now();
-    user.value
-      ..name = nameCtrl.text
-      ..publicKey = publicKeyCtrl.text
+    final UserBox u = UserBox();
+    u..publicKey = publicKeyCtrl.text
       ..keyTime = now
       ..contactTime = now;
-    UserDao.save(user.value);
-    loadUsers();
+    isEditUser
+        ? u.alias = nameCtrl.text
+        : u.name = nameCtrl.text;
+    print(u.publicKey);
+    u.id = UserDao.save(user.value);
+    isEditUser ? users[userIndex] = u : users.add(u);
+    users.refresh();
     Get.back();
   }
 }

@@ -1,8 +1,8 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import '../../../lib.dart';
 
 class ProfileView extends StatelessWidget {
@@ -25,8 +24,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MeController m = Get.find();
-    final Map<String, String> map = {'name': m.me.value.name??'','key': m.me.value.publicKey ?? ''};
+    final ApplicationViewModel m = Get.find();
     return Scaffold(
         appBar: AppBar(title: Text('me_profile'.tr)),
         body: SafeArea(
@@ -36,18 +34,19 @@ class ProfileView extends StatelessWidget {
                   children: [
                     CommonListTile(
                         title: 'common_name'.tr,
-                        trailing: Obx(() => Text(m.me.value.nameStr)),
+                        trailing: Obx(() => Text(m.user.value.nameStr)),
                         nextPage: const SetNameView()),
                     const Divider(),
                     CommonListTile(
                         title: 'common_rsaPublicKey'.tr,
-                        trailing: Obx(() => Text(m.me.value.publicKeyPartStr)),
-                        nextPage: const UpdateKeyPairView()),
+                        trailing:
+                            Obx(() => Text(m.user.value.publicKeyPartStr)),
+                        nextPage: const UpdatePublicKeyView()),
                     const Divider(),
                     CommonListTile(
                         title: 'common_timeOfCreateKey'.tr,
                         trailing: Obx(
-                            () => Text(m.me.value.keyTime!.yyyyMmDdHhMmSs))),
+                            () => Text(m.user.value.keyTime!.yyyyMmDdHhMmSs))),
                   ],
                 ))));
   }

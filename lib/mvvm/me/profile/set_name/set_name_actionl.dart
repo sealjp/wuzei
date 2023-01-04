@@ -1,8 +1,8 @@
 /*
- * This file is part of the Wuzei (https://github.com/sealjp/Wuzei.git or 
- * git@github.com:sealjp/Wuzei.git).
+ * This file is part of the Wuzei (https://github.com/sealjp/wuzei.git or 
+ * git@github.com:sealjp/wuzei.git).
  * 
- * Copyright (C) 2022 Zhang Xi (sealnippon@gmail.com)
+ * Copyright (C) 2022-2023 Zhang Xi (sealnippon@gmail.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -17,23 +17,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import '../../../../lib.dart';
 
-extension SetNameAction on MeController {
+extension SetNameAction on ApplicationViewModel {
   void inputName(String? v) {
     if (v == null) return;
     nameCtrl.text = v;
   }
 
-  void clear() {
-    nameCtrl.text = '';
-  }
+  void clearName() => nameCtrl.clear();
 
   void complete() {
-    me.value.alias = nameCtrl.text;
-    updateMe();
-    loadMe();
-    back();
+    users[meIndex].alias = nameCtrl.text;
+    users.refresh();
+    UserDao.save(users[meIndex]);
+    Get.back();
   }
 }
