@@ -20,7 +20,6 @@ WuzeiはRSAで情報を暗号化するアプリである。
 ### App Store
 
 [<img src="https://apple-resources.s3.amazonaws.com/media-badges/download-on-the-app-store/black/en-us.svg" alt="Download on the App Store" width="120px">](https://apps.apple.com/app/id1660434628)
-https://play.google.com/store/apps/details?id=org.open.wuzei  
 
 
 ## License
